@@ -134,8 +134,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grid.h" />
+    <ClInclude Include="direction.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="tracer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lab1_10x10.txt" />
+    <Text Include="lab2_10x10.txt" />
+    <Text Include="lab3_3x3.txt" />
+    <Text Include="lab4_50x50.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

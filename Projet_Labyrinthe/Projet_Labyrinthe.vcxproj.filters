@@ -38,5 +38,22 @@
     <ClInclude Include="tracer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="direction.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lab1_10x10.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="lab2_10x10.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="lab3_3x3.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="lab4_50x50.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
   </ItemGroup>
 </Project>
