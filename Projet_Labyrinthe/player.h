@@ -1,6 +1,8 @@
 #pragma once
 #include "direction.h"
 #include "tracer.h"
+#include "grid.h"
+#include "tile.h"
 #include <string>
 
 namespace coo {
@@ -18,11 +20,27 @@ namespace coo {
 		 */
 		void operator+(const direction& d);
 
+		/**
+		 * Affiche l'historique des mouvements effectués.
+		 * 
+		 */
 		void printHistory() const;
 
 	private:
+		/**
+		 * La position horizontale du joueur.
+		 */
 		int positionX;
+
+
+		/**
+		 * La position verticale du joueur.
+		 */
 		int positionY;
+
+		/**
+		 * L'historique des mouvements du joueur.
+		 */
 		tracer moveHistory;
 	};
 }

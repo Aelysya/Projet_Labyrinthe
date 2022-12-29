@@ -1,2 +1,3 @@
-﻿  tracer.cpp
+﻿  grid.cpp
+C:\Users\maxim\Desktop\Projet_Labyrinthe\Projet_Labyrinthe\grid.cpp(11,38): warning C4267: '=' : conversion de 'size_t' en 'int', perte possible de données
   Projet_Labyrinthe.vcxproj -> C:\Users\maxim\Desktop\Projet_Labyrinthe\x64\Debug\Projet_Labyrinthe.exe

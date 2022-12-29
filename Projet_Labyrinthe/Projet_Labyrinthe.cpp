@@ -11,13 +11,14 @@ using namespace coo;
 
 int main()
 {
+	grid g("lab3_3x3.txt");
 	tracer t;
-	player p1(t);
+	player p(t);
 
-	p1 + UP;
-	p1 + RIGHT;
+	p + UP;
+	p + RIGHT;
 
-	p1.printHistory();
+	p.printHistory();
 }
 
 /*
