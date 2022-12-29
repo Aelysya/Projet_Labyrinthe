@@ -25,7 +25,7 @@ namespace coo {
 		/**
 		 * Liste des cases du labyrinthe.
 		 */
-		tile* tiles;
+		tile** tiles;
 	};
 }
 

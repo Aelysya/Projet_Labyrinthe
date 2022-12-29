@@ -21,14 +21,6 @@ int main()
 	p.printHistory();
 }
 
-/*
-
-Taille du labyrinthe en cases
- -> (nb de # sur la première ligne + 2) / 3
-
-
-*/
-
 
 
 
