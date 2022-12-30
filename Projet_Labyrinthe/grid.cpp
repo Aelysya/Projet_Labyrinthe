@@ -31,10 +31,10 @@ coo::grid::grid(const std::string& fileName)
 	std::getline(file, line);
 
 	//Transformation des caractères en booléens
-	this->tiles = new bool* [this->size_y];
+	this->tiles = new bool*[this->size_y];
 	for (size_t i = 0; i < size_y; ++i) {
 		this->tiles[i] = new bool[size_x];
-		int k = -1;
+		int k = -1; //Décalement des colonnes
 		if (i != 0 || i != size_y) {
 			for (size_t j = 0; j < size_x; j++) {
 				if (j % 2 == 0) {
@@ -60,12 +60,46 @@ coo::grid::grid(const std::string& fileName)
 	file.close();
 }
 
+coo::grid::grid(const grid& g) : size_x(g.size_x), size_y(g.size_y)
+{
+	this->tiles = new bool*[this->size_y];
+	for (size_t i = 0; i < size_y; ++i)
+	{
+		this->tiles[i] = new bool[size_x];
+		for (size_t j = 0; j < size_x; ++j)
+		{
+			this->tiles[i][j] = g.tiles[i][j];
+		}
+	}
+}
+
 coo::grid::~grid()
 {
-	//for (size_t i = 0; i < this->size_y; ++i) {
-	//	delete[] this->tiles[i];
-	//}
-	//delete[] this->tiles;
+	for (size_t i = 0; i < this->size_y; ++i) {
+		delete[] this->tiles[i];
+	}
+	delete[] this->tiles;
+}
+
+coo::grid& coo::grid::operator=(const grid& g)
+{
+	if (this != &g) {
+		for (size_t i = 0; i < size_y; ++i) {
+			delete[] this->tiles[i];
+		}
+		delete[] this->tiles;
+		this->size_x = g.size_x;
+		this->size_y = g.size_y;
+		for (size_t i = 0; i < size_y; ++i)
+		{
+			this->tiles[i] = new bool[size_x];
+			for (size_t j = 0; j < size_x; ++j)
+			{
+				this->tiles[i][j] = g.tiles[i][j];
+			}
+		}
+	}
+	return *this;
 }
 
 void coo::grid::printMaze(int posX, int posY) const

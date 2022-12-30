@@ -1,12 +1,13 @@
 #include "player.h"
 #include <iostream>
 
-coo::player::player(const grid& g) : positionX(1), positionY(1), moveHistory(*new tracer), maze(g)
+coo::player::player(const grid& g) : positionX(1), positionY(1), moveHistory(*new tracer), maze(g), currentDirection(RIGHT)
 {
 }
 
 coo::player::~player()
-{
+{ 
+	
 }
 
 void coo::player::operator+(const direction& d)

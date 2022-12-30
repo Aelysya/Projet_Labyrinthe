@@ -48,6 +48,10 @@ namespace coo {
 		 */
 		tracer moveHistory;
 
+		/*
+		*/
+		direction currentDirection;
+
 		/**
 		 * Le labyrinthe dans lequel se trouve le joueur.
 		 */
