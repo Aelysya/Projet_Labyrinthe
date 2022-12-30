@@ -23,14 +23,18 @@ int main()
 	//Tests
 	//Création d'une grille, 
 	grid g("lab3_3x3.txt");
-	g.printMaze();
-	/*tracer t;
-	player p(t);
+	player p(g);
 
-	p + UP;
 	p + RIGHT;
+	p.printMaze();
+	p + DOWN;
+	p.printMaze();
+	p + DOWN;
+	p.printMaze();
+	p + RIGHT;
+	p.printMaze();
 
-	p.printHistory();*/
+	p.printHistory();
 }
 
 

@@ -25,6 +25,8 @@ namespace coo {
 		 */
 		void printHistory() const;
 
+		const direction& getLastMove() const;
+
 	private:
 		/**
 		 * Ce vecteur contient une liste de direction qui 

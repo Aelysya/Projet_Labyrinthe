@@ -62,18 +62,23 @@ coo::grid::grid(const std::string& fileName)
 
 coo::grid::~grid()
 {
-	for (size_t i = 0; i < this->size_y; ++i) {
-		delete[] this->tiles[i];
-	}
-	delete[] this->tiles;
+	//for (size_t i = 0; i < this->size_y; ++i) {
+	//	delete[] this->tiles[i];
+	//}
+	//delete[] this->tiles;
 }
 
-void coo::grid::printMaze() const
+void coo::grid::printMaze(int posX, int posY) const
 {
 	for (size_t i = 0; i < size_y; ++i) {
 		for (size_t j = 0; j < size_x; ++j) {
 			if (tiles[i][j]) {
-				std::cout << " ";
+				if (j == posX && i == posY) {
+					std::cout << "X";
+				}
+				else {
+					std::cout << " ";
+				}
 			}
 			else {
 				std::cout << "#";
@@ -81,4 +86,9 @@ void coo::grid::printMaze() const
 		}
 		std::cout << std::endl;
 	}
+}
+
+bool** coo::grid::getTiles() const
+{
+	return this->tiles;
 }

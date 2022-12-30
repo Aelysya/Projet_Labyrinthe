@@ -8,7 +8,7 @@ namespace coo {
 	class player
 	{
 	public:
-		player(const tracer& t);
+		player(const grid& g);
 		~player();
 
 		/**
@@ -24,6 +24,12 @@ namespace coo {
 		 * 
 		 */
 		void printHistory() const;
+
+		/**
+		 * Affiche le labyrinthe avec la position du joueur.
+		 * 
+		 */
+		void printMaze() const;
 
 	private:
 		/**
@@ -41,5 +47,18 @@ namespace coo {
 		 * L'historique des mouvements du joueur.
 		 */
 		tracer moveHistory;
+
+		/**
+		 * Le labyrinthe dans lequel se trouve le joueur.
+		 */
+		grid maze;
+
+		/**
+		 * Vérifie que le déplacement voulant être effectué est possible.
+		 * 
+		 * \param d La direction voulant être prise par le joueur
+		 * \return Si le joueur peut se déplacer dans la direction voulue
+		 */
+		bool canMove(const direction& d) const;
 	};
 }

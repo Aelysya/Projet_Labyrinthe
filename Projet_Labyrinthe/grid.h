@@ -13,7 +13,21 @@ namespace coo {
 		 */
 		grid(const std::string& fileName);
 		~grid();
-		void printMaze() const;
+
+		/**
+		 * Affiche le labyrinthe avec la position du joueur.
+		 * 
+		 * \param posX Position horizontale du joueur
+		 * \param posY Position verticale du joueur
+		 */
+		void printMaze(int posX, int posY) const;
+
+		/**
+		 * .
+		 * 
+		 * \return La liste des cases du labyrinthe
+		 */
+		bool** getTiles() const;
 
 	private:
 		/**

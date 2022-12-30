@@ -22,6 +22,11 @@ void coo::tracer::printHistory() const
 	std::cout <<std::endl;
 }
 
+const coo::direction& coo::tracer::getLastMove() const
+{
+	return moveHistory.back();
+}
+
 const std::string coo::tracer::directionToString(const direction& d) const
 {
 	std::string s;
