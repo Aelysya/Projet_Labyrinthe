@@ -7,36 +7,11 @@
 namespace coo {
 	class player
 	{
-	public:
-		player(const grid& g);
-		~player();
-
-		/**
-		 * Déplace le joueur dans la direction donnée
-		 * et ajoute le mouvement à l'historique.
-		 * 
-		 * \param d La direction prise par le joueur
-		 */
-		void operator+(const direction& d);
-
-		/**
-		 * Affiche l'historique des mouvements effectués.
-		 * 
-		 */
-		void printHistory() const;
-
-		/**
-		 * Affiche le labyrinthe avec la position du joueur.
-		 * 
-		 */
-		void printMaze() const;
-
-	private:
+	protected:
 		/**
 		 * La position horizontale du joueur.
 		 */
 		int positionX;
-
 
 		/**
 		 * La position verticale du joueur.
@@ -49,6 +24,7 @@ namespace coo {
 		tracer moveHistory;
 
 		/*
+		* La direction actuelle du joueur.
 		*/
 		direction currentDirection;
 
@@ -59,10 +35,44 @@ namespace coo {
 
 		/**
 		 * Vérifie que le déplacement voulant être effectué est possible.
-		 * 
+		 *
 		 * \param d La direction voulant être prise par le joueur
 		 * \return Si le joueur peut se déplacer dans la direction voulue
 		 */
-		bool canMove(const direction& d) const;
+		bool operator+(const direction& d) const;
+		/**
+		 * Vérifie que se déplacer dans la direction actuelle est possible.
+		 *
+		 * \return Si le joueur peut se déplacer dans la direction actuelle
+		 */
+		bool operator++() const;
+	public:
+		player(const grid& g);
+
+		/**
+		 * Déplace le joueur dans la direction donnée
+		 * et ajoute le mouvement à l'historique.
+		 * 
+		 * \param d La direction prise par le joueur
+		 * \return Si le joueur a effectué le déplacement
+		 */
+		bool operator+=(const direction& d); //a mettre en protected un fois solve implémenté
+
+		/**
+		 * Affiche l'historique des mouvements effectués.
+		 */
+		void printHistory() const;
+
+		/**
+		 * Affiche le labyrinthe avec la position du joueur.
+		 */
+		void printMaze() const;
+
+		/**
+		 * Résolution du labyrinthe
+		 * 
+		 * \return Si le joueur a trouvé la sortie
+		 */
+		virtual bool solve() = 0;
 	};
 }

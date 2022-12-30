@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="leftPlayer.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Projet_Labyrinthe.cpp" />
     <ClCompile Include="tracer.cpp" />
@@ -135,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="grid.h" />
     <ClInclude Include="direction.h" />
+    <ClInclude Include="leftPlayer.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="tracer.h" />
   </ItemGroup>
