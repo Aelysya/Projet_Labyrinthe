@@ -1,6 +1,6 @@
 #include "player.h"
 
-coo::player::player(const tracer& t) : positionX(0), positionY(0), moveHistory(t)
+coo::player::player(const tracer& t) : positionX(1), positionY(1), moveHistory(t)
 {
 }
 
