@@ -23,7 +23,7 @@ int main()
 	//Tests
 	//Création d'une grille, 
 	grid g("lab3_3x3.txt");
-	g.printEmptyMaze();
+	g.printMaze();
 	/*tracer t;
 	player p(t);
 

@@ -4,47 +4,7 @@
 
 coo::grid::grid(const std::string& fileName)
 {
-	std::ifstream file(fileName);
-	std::string line;
-	//Lecture de la première ligne pour déterminer la taille du labyrinthe
-	std::getline(file, line);
-
-	//Détermination du nombre de colonnes
-	this->size_x = line.size();
-
-	//Détermination du nombre de lignes
-	this->size_y = 0;
-	while (!file.eof()) {
-		size_y++;
-		std::getline(file, line);
-	}
-
-	//Retour au début du fichier
-	file.clear();
-	file.seekg(0);
-	std::getline(file, line);
-
-	//Transformation des caractères en booléens
-	this->tiles = new bool* [this->size_y];
-	for (size_t i = 0; i < size_y; ++i) {
-		this->tiles[i] = new bool[size_x];
-		for (size_t j = 0; j < size_x; ++j) {
-			if (line[j] == ' ') {
-				this->tiles[i][j] = true;
-			}
-			else {
-				this->tiles[i][j] = false;
-			}
-		}
-		std::getline(file, line);
-	}
-
-	//Fermeture du fichier
-	file.close();
-}
-
-coo::grid::grid(const std::string& fileName, const int& spacesize)
-{
+	int spacesize = 2;
 	std::ifstream file(fileName);
 	std::string line;
 	//Lecture de la première ligne pour déterminer la taille du labyrinthe
@@ -52,13 +12,9 @@ coo::grid::grid(const std::string& fileName, const int& spacesize)
 
 	//Détermination du nombre de colonnes
 	this->size_x = 0;
-	for (size_t i = 0; i < line.size(); i++) {
-		std::cout << i << std::endl;
-		this->size_x += 1;
-		//On dit non aux cases non sollicités comme je refuse
-		//les appels des gens que je connais pas
-		if (line[i] == ' ') {
-			i += spacesize - 1; //on a quand même compté un caractère
+	for (size_t j = 0; j < line.size(); j++) {
+		if (j % 3 != 2) {
+			this->size_x += 1;
 		}
 	}
 
@@ -78,18 +34,23 @@ coo::grid::grid(const std::string& fileName, const int& spacesize)
 	this->tiles = new bool* [this->size_y];
 	for (size_t i = 0; i < size_y; ++i) {
 		this->tiles[i] = new bool[size_x];
-		for (size_t j = 0; j < size_x; ++j) {
-			if (line[j] == ' ') {
+		int k = -1;
+		for (size_t j = 0; j < size_x; j++) {
+			if (j % 2 == 0) {
+				k++;
+			}
+			std::cout << j + k;
+			if (line[j + k] == ' ') {
 				this->tiles[i][j] = true;
-				j += spacesize - 1;
 			}
 			else {
 				this->tiles[i][j] = false;
 			}
+			
 		}
+		std::cout << std::endl;
 		std::getline(file, line);
 	}
-
 	//Fermeture du fichier
 	file.close();
 }

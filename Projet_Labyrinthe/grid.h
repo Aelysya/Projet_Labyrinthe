@@ -6,19 +6,12 @@ namespace coo {
 	{
 	public:
 		/**
-		 * Constructeur de labyrinthe.
+		 * Constructeur de labyrinthe de case de 2 de largeur (pourquoi?)
 		 * 
 		 * \param fileName nom du fichier texte dans 
 		 * lequel sera lu la structure du labyrinthe
 		 */
 		grid(const std::string& fileName);
-		/**
-		 * Constructeur de labyrinthe pour espaces à plusieurs caractères
-		 *
-		 * \param spacesize le nombre d'espaces composant
-		 * une case du labyrinthe
-		 */
-		grid(const std::string& fileName, const int& spacesize);
 		~grid();
 		void printMaze() const;
 
