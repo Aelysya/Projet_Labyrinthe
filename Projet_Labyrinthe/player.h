@@ -2,7 +2,6 @@
 #include "direction.h"
 #include "tracer.h"
 #include "grid.h"
-#include "tile.h"
 #include <string>
 
 namespace coo {

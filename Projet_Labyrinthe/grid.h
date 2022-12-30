@@ -1,5 +1,4 @@
 #pragma once
-#include "tile.h"
 #include <string>
 
 namespace coo {
@@ -13,19 +12,30 @@ namespace coo {
 		 * lequel sera lu la structure du labyrinthe
 		 */
 		grid(const std::string& fileName);
+		/**
+		 * Constructeur de labyrinthe pour espaces à plusieurs caractères
+		 *
+		 * \param spacesize le nombre d'espaces composant
+		 * une case du labyrinthe
+		 */
+		grid(const std::string& fileName, const int& spacesize);
 		~grid();
-
+		void printMaze() const;
 
 	private:
 		/**
-		 * Nombre de cases sur les côtés du labyrinthe.
+		 * Nombre de lignes du labyrinthe.
 		 */
-		int size;
+		int size_x;
+
+		/**
+		 * Nombre de colonnes dans la dernière ligne du labyrinthe.
+		 */
+		int size_y;
 
 		/**
 		 * Liste des cases du labyrinthe.
 		 */
-		tile** tiles;
+		bool** tiles;
 	};
 }
-

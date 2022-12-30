@@ -11,14 +11,26 @@ using namespace coo;
 
 int main()
 {
+	//1: Choix du fichier
+
+	//2: Traitement du fichier
+
+	//3: Résolution du labyrinthe
+
+	//4: Affichage du résultat
+
+
+	//Tests
+	//Création d'une grille, 
 	grid g("lab3_3x3.txt");
-	tracer t;
+	g.printEmptyMaze();
+	/*tracer t;
 	player p(t);
 
 	p + UP;
 	p + RIGHT;
 
-	p.printHistory();
+	p.printHistory();*/
 }
 
 
