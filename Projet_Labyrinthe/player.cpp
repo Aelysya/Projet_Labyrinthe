@@ -1,3 +1,4 @@
+#include <iostream>
 #include "player.h"
 
 coo::player::player(const grid& g) : positionX(1), positionY(1), moveHistory(*new tracer), maze(g), currentDirection(RIGHT)
@@ -7,7 +8,7 @@ coo::player::player(const grid& g) : positionX(1), positionY(1), moveHistory(*ne
 
 bool coo::player::operator+(const direction& d) const
 {
-	bool canMove;
+	bool canMove = false;
 	switch (d) {
 	case UP:
 		canMove = this->maze.getTiles()[this->positionY - 1][this->positionX];
@@ -21,14 +22,8 @@ bool coo::player::operator+(const direction& d) const
 	case LEFT:
 		canMove = this->maze.getTiles()[this->positionY][this->positionX - 1];
 		break;
-	default:
-		canMove = false;
 	}
 	return canMove;
-}
-
-bool coo::player::operator++() const {
-	return this + this->currentDirection;
 }
 
 bool coo::player::operator+=(const direction& d)

@@ -40,23 +40,23 @@ namespace coo {
 		 * \return Si le joueur peut se déplacer dans la direction voulue
 		 */
 		bool operator+(const direction& d) const;
-		/**
-		 * Vérifie que se déplacer dans la direction actuelle est possible.
-		 *
-		 * \return Si le joueur peut se déplacer dans la direction actuelle
-		 */
-		bool operator++() const;
-	public:
-		player(const grid& g);
 
 		/**
 		 * Déplace le joueur dans la direction donnée
 		 * et ajoute le mouvement à l'historique.
-		 * 
+		 *
 		 * \param d La direction prise par le joueur
 		 * \return Si le joueur a effectué le déplacement
 		 */
-		bool operator+=(const direction& d); //a mettre en protected un fois solve implémenté
+		bool operator+=(const direction& d);
+
+		/**
+		 * Change la direction du joueur
+		 */
+		virtual void changeDirection() = 0;
+		
+	public:
+		player(const grid& g);
 
 		/**
 		 * Affiche l'historique des mouvements effectués.

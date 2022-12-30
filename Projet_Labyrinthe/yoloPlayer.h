@@ -1,14 +1,14 @@
 #pragma once
 #include "player.h"
 namespace coo {
-	class leftPlayer : public player
+	class yoloPlayer : public player
 	{
 		/**
 		 * Tourne la direction actuelle dans le sens antihoraire
 		 */
 		void changeDirection();
 	public:
-		leftPlayer(const grid& g);
+		yoloPlayer(const grid& g);
 		bool solve();
 	};
 }

@@ -38,6 +38,9 @@ namespace coo {
 		 */
 		void printMaze(int posX, int posY) const;
 
+		int getSizeX() const;
+		int getSizeY() const;
+
 		/**
 		 * .
 		 * 

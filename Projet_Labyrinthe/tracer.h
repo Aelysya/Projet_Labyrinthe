@@ -40,5 +40,5 @@ namespace coo {
 		void printHistory() const;
 
 		const direction& getLastMove() const;
-	}
+	};
 }

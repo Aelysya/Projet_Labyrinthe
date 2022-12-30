@@ -1,6 +1,30 @@
 #include "tracer.h"
 #include <iostream>
 
+const std::string coo::tracer::directionToString(const direction& d) const
+{
+	std::string s;
+
+	switch (d) {
+	case UP:
+		s = "UP";
+		break;
+	case DOWN:
+		s = "DOWN";
+		break;
+	case RIGHT:
+		s = "RIGHT";
+		break;
+	case LEFT:
+		s = "LEFT";
+		break;
+	default:
+		return "";
+	}
+
+	return s;
+}
+
 coo::tracer::tracer()
 {
 }
@@ -25,28 +49,4 @@ void coo::tracer::printHistory() const
 const coo::direction& coo::tracer::getLastMove() const
 {
 	return moveHistory.back();
-}
-
-const std::string coo::tracer::directionToString(const direction& d) const
-{
-	std::string s;
-
-	switch (d) {
-	case UP:
-		s = "UP";
-		break;
-	case DOWN:
-		s = "DOWN";
-		break;
-	case RIGHT:
-		s = "RIGHT";
-		break;
-	case LEFT:
-		s = "LEFT";
-		break;
-	default:
-		return "";
-	}
-
-	return s;
 }

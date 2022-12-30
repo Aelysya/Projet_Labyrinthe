@@ -123,6 +123,15 @@ void coo::grid::printMaze(int posX, int posY) const
 	std::cout << std::endl;
 }
 
+int coo::grid::getSizeX() const 
+{
+	return this->size_x;
+}
+int coo::grid::getSizeY() const
+{
+	return this->size_y;
+}
+
 bool** coo::grid::getTiles() const
 {
 	return this->tiles;

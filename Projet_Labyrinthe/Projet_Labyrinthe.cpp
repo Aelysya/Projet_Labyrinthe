@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include "leftplayer.h"
+#include "yoloplayer.h"
 #include "tracer.h"
 #include "direction.h"
 #include "grid.h"
@@ -23,18 +23,11 @@ int main()
 	//Tests
 	//Création d'une grille, 
 	grid g("lab3_3x3.txt");
-	leftPlayer p(g);
+	yoloPlayer p(g);
 
 	p.printMaze();
-	p += RIGHT;
+	p.solve();
 	p.printMaze();
-	p += DOWN;
-	p.printMaze();
-	p += DOWN;
-	p.printMaze();
-	p += RIGHT;
-	p.printMaze();
-
 	p.printHistory();
 }
 
