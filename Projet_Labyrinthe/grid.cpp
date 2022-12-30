@@ -35,19 +35,25 @@ coo::grid::grid(const std::string& fileName)
 	for (size_t i = 0; i < size_y; ++i) {
 		this->tiles[i] = new bool[size_x];
 		int k = -1;
-		for (size_t j = 0; j < size_x; j++) {
-			if (j % 2 == 0) {
-				k++;
+		if (i != 0 || i != size_y) {
+			for (size_t j = 0; j < size_x; j++) {
+				if (j % 2 == 0) {
+					k++;
+				}
+				if (i == 0 || i == size_x-1 || j == 0 || j == size_y-1) {
+					this->tiles[i][j] = false;
+				}
+				else {
+					if (line[j + k] == ' ') {
+						this->tiles[i][j] = true;
+					}
+					else {
+						this->tiles[i][j] = false;
+					}
+				}
+				
 			}
-			if (line[j + k] == ' ') {
-				this->tiles[i][j] = true;
-			}
-			else {
-				this->tiles[i][j] = false;
-			}
-			
 		}
-		std::cout << std::endl;
 		std::getline(file, line);
 	}
 	//Fermeture du fichier
