@@ -39,7 +39,6 @@ coo::grid::grid(const std::string& fileName)
 			if (j % 2 == 0) {
 				k++;
 			}
-			std::cout << j + k;
 			if (line[j + k] == ' ') {
 				this->tiles[i][j] = true;
 			}
