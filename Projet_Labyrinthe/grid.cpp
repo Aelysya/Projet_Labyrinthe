@@ -86,6 +86,7 @@ void coo::grid::printMaze(int posX, int posY) const
 		}
 		std::cout << std::endl;
 	}
+	std::cout << std::endl;
 }
 
 bool** coo::grid::getTiles() const

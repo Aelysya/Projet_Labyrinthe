@@ -25,6 +25,7 @@ int main()
 	grid g("lab3_3x3.txt");
 	player p(g);
 
+	p.printMaze();
 	p + RIGHT;
 	p.printMaze();
 	p + DOWN;
