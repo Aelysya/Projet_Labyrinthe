@@ -11,12 +11,12 @@ namespace coo {
 		/**
 		 * La position horizontale du joueur.
 		 */
-		int positionX;
+		int x;
 
 		/**
 		 * La position verticale du joueur.
 		 */
-		int positionY;
+		int y;
 
 		/**
 		 * L'historique des mouvements du joueur.
@@ -29,7 +29,7 @@ namespace coo {
 		direction currentDirection;
 
 		/**
-		 * Le labyrinthe dans lequel se trouve le joueur.
+		 * Le labyrinthe à résoudre.
 		 */
 		grid maze;
 
@@ -49,13 +49,13 @@ namespace coo {
 		 * \return Si le joueur a effectué le déplacement
 		 */
 		bool operator+=(const direction& d);
-
-		/**
-		 * Change la direction du joueur
-		 */
-		virtual void changeDirection() = 0;
 		
 	public:
+		/**
+		 * Constructeur de joueur
+		 *
+		 * \param g le labyrinthe à parcourir
+		 */
 		player(const grid& g);
 
 		/**
@@ -66,13 +66,14 @@ namespace coo {
 		/**
 		 * Affiche le labyrinthe avec la position du joueur.
 		 */
-		void printMaze() const;
+		void printPosition() const;
 
 		/**
 		 * Résolution du labyrinthe
 		 * 
-		 * \return Si le joueur a trouvé la sortie
+		 * \return Le nombre de cases parcourues nécessaire
+		 * à la résolution ou -1 si c'est impossible
 		 */
-		virtual bool solve() = 0;
+		virtual int solve() = 0;
 	};
 }

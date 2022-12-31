@@ -1,9 +1,8 @@
 #include <iostream>
 #include "player.h"
 
-coo::player::player(const grid& g) : positionX(1), positionY(1), moveHistory(*new tracer), maze(g), currentDirection(RIGHT)
+coo::player::player(const grid& g) : x(1), y(1), maze(g), moveHistory(maze.getX(), maze.getY()), currentDirection(RIGHT)
 {
-
 }
 
 bool coo::player::operator+(const direction& d) const
@@ -11,16 +10,20 @@ bool coo::player::operator+(const direction& d) const
 	bool canMove = false;
 	switch (d) {
 	case UP:
-		canMove = this->maze.getTiles()[this->positionY - 1][this->positionX];
+		canMove = this->maze.isAccessible(this->y - 1, this->x)
+			&& this->moveHistory.isAccessible(this->y - 1, this->x);
 		break;
 	case DOWN:
-		canMove = this->maze.getTiles()[this->positionY + 1][this->positionX];
+		canMove = this->maze.isAccessible(this->y + 1, this->x)
+			&& this->moveHistory.isAccessible(this->y + 1, this->x);
 		break;
 	case RIGHT:
-		canMove = this->maze.getTiles()[this->positionY][this->positionX + 1];
+		canMove = this->maze.isAccessible(this->y, this->x + 1)
+			&& this->moveHistory.isAccessible(this->y, this->x + 1);
 		break;
 	case LEFT:
-		canMove = this->maze.getTiles()[this->positionY][this->positionX - 1];
+		canMove = this->maze.isAccessible(this->y, this->x - 1)
+			&& this->moveHistory.isAccessible(this->y, this->x - 1);
 		break;
 	}
 	return canMove;
@@ -31,19 +34,19 @@ bool coo::player::operator+=(const direction& d)
 	if (this + d) {
 		switch (d) {
 		case UP :
-			this->positionY -= 2;
+			this->y -= 2;
 			break;
 		case DOWN :
-			this->positionY += 2;
+			this->y += 2;
 			break;
 		case RIGHT :
-			this->positionX += 2;
+			this->x += 2;
 			break;
 		case LEFT :
-			this->positionX -= 2;
+			this->x -= 2;
 			break;
 		}
-		this->moveHistory.addMove(d);
+		this->moveHistory.addMove(this->x, this->y, d);
 		return true;
 	}
 	else {
@@ -53,10 +56,10 @@ bool coo::player::operator+=(const direction& d)
 
 void coo::player::printHistory() const
 {
-	this->moveHistory.printHistory();
+	//todo: this->maze.printMaze(this->moveHistory);
 }
 
-void coo::player::printMaze() const
+void coo::player::printPosition() const
 {
-	this->maze.printMaze(this->positionX, this->positionY);
+	this->maze.printMaze(this->x, this->y);
 }

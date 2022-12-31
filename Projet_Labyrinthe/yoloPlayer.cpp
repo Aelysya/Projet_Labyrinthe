@@ -24,20 +24,20 @@ coo::yoloPlayer::yoloPlayer(const grid& g) : player(g)
 {
 }
 
-bool coo::yoloPlayer::solve()
+int coo::yoloPlayer::solve()
 {
 	std::cout << "yoloPlayer solve" << std::endl;
-	while (positionX != maze.getSizeX() - 1 && positionY != maze.getSizeY() - 1) {
+	while (x != maze.getX() - 1 && y != maze.getY() - 1) {
 		if (*this + currentDirection) {
 			std::cout << "yoloPlayer solving :) " << this->currentDirection << std::endl;
 			*this += currentDirection;
-			this->printMaze();
+			this->printPosition();
 		}
 		else {
 			std::cout << "tournicotis, tournicotons" << this->currentDirection << std::endl;
 			this->changeDirection();
-			this->printMaze();
+			this->printPosition();
 		}
 	}
-	return true;
+	return -1;
 }

@@ -9,6 +9,6 @@ namespace coo {
 		void changeDirection();
 	public:
 		leftPlayer(const grid& g);
-		bool solve();
+		int solve();
 	};
 }

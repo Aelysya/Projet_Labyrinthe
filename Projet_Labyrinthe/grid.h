@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "tracer.h"
 
 namespace coo {
 	class grid
@@ -7,45 +8,72 @@ namespace coo {
 		/**
 		 * Nombre de lignes du labyrinthe.
 		 */
-		int size_x;
-
+		int sizex;
 		/**
-		 * Nombre de colonnes dans la dernière ligne du labyrinthe.
+		 * Nombre de colonnes du labyrinthe.
 		 */
-		int size_y;
+		int sizey;
 
 		/**
 		 * Liste des cases du labyrinthe.
+		 * Les cases ont comme valeur 'vrai' lorsque
+		 * celles-ci correspondent à un chemin
+		 * (false = mur)
 		 */
 		bool** tiles;
+
 	public:
 		/**
-		 * Constructeur de labyrinthe de case de 2 de largeur (pourquoi?)
+		 * Constructeur de labyrinthe de case à largeur variable
 		 * 
-		 * \param fileName nom du fichier texte dans 
-		 * lequel sera lu la structure du labyrinthe
+		 * \param fileName nom du fichier texte à partir 
+		 * dequel sera lu la structure du labyrinthe
+		 * \param size la largeur des cases
 		 */
-		grid(const std::string& fileName);
+		grid(const std::string& fileName, const int& size);
+
+		/**
+		 * Constructeur de recopie du labyrinthe
+		 *
+		 * \param g Le labyrinthe à recopier
+		 */
 		grid(const grid& g);
+
+		/**
+		 * Destructeur
+		 */
 		~grid();
+
+		/**
+		 * Opérateur d'affectation
+		 * 
+		 * \param g Le labyrinthe à affecter
+		 */
 		grid& operator=(const grid& g);
 
-		/**
-		 * Affiche le labyrinthe avec la position du joueur.
-		 * 
-		 * \param posX Position horizontale du joueur
-		 * \param posY Position verticale du joueur
-		 */
-		void printMaze(int posX, int posY) const;
-
-		int getSizeX() const;
-		int getSizeY() const;
+		int getX() const;
+		int getY() const;
 
 		/**
-		 * .
+		 * Affiche une position dans le labyrinthe
 		 * 
-		 * \return La liste des cases du labyrinthe
+		 * \param posX Position horizontale
+		 * \param posY Position verticale
 		 */
-		bool** getTiles() const;
+		void printMaze(const int& x, const int& y) const;
+
+		/**
+		 * Affiche le labyrinthe avec le tracer de déplacement donné
+		 *
+		 * \param t Le tracer représentant les déplacements
+		 */
+		void printMaze(const tracer& t) const;
+
+		/**
+		 * Retourne l'état de la case (déplacement possible ou non)
+		 * 
+		 * \return true si la case n'est pas un mur
+		 */
+		bool isAccessible(const int& x, const int& y) const;
 	};
 }

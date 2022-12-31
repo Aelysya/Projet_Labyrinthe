@@ -23,19 +23,20 @@ coo::leftPlayer::leftPlayer(const grid& g) : player(g)
 {
 }
 
-bool coo::leftPlayer::solve()
+int coo::leftPlayer::solve()
 {
     std::cout << "leftPlayer solve" << std::endl;
-	while (positionX != maze.getSizeX() - 1 && positionY != maze.getSizeY() - 1) {
+	while (x != maze.getX() - 1 && y != maze.getY() - 1) {
 		if (*this + currentDirection) {
 			std::cout << "leftPlayer solving :) " << this->currentDirection << std::endl;
 			*this += currentDirection;
-			this->printMaze();
+			this->printPosition();
 		}
 		else {
 			std::cout << "tournicotis, tournicotons" << std::endl;
 			this->changeDirection();
 		}
 	}
-    return true;
+	//this->printHistory();
+    return -1;
 }

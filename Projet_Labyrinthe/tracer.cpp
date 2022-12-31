@@ -1,52 +1,82 @@
 #include "tracer.h"
 #include <iostream>
 
-const std::string coo::tracer::directionToString(const direction& d) const
+coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 {
-	std::string s;
-
-	switch (d) {
-	case UP:
-		s = "UP";
-		break;
-	case DOWN:
-		s = "DOWN";
-		break;
-	case RIGHT:
-		s = "RIGHT";
-		break;
-	case LEFT:
-		s = "LEFT";
-		break;
-	default:
-		return "";
+	this->seenTiles = new bool*[y];
+	for (size_t i = 0; i < y; ++i) {
+		this->seenTiles[i] = new bool[x];
+		for (size_t j = 0; j < x; j++) {
+			this->seenTiles[i][j] = false;
+		}
 	}
 
-	return s;
+	this->blockedTiles = new bool* [y];
+	for (size_t i = 0; i < y; ++i) {
+		this->blockedTiles[i] = new bool[x];
+		for (size_t j = 0; j < x; j++) {
+			this->blockedTiles[i][j] = false;
+		}
+	}
 }
 
-coo::tracer::tracer()
+coo::tracer::tracer(const coo::tracer& t) : moves(t.moves), sizex(t.sizex), sizey(t.sizey)
 {
+	this->seenTiles = new bool*[this->sizey];
+	this->blockedTiles = new bool*[this->sizey];
+	for (size_t i = 0; i < this->sizey; ++i) {
+		this->seenTiles[i] = new bool[this->sizex];
+		this->blockedTiles[i] = new bool[this->sizex];
+		for (size_t j = 0; j < this->sizex; j++) {
+			this->seenTiles[i][j] = t.seenTiles[i][j];
+			this->blockedTiles[i][j] = t.blockedTiles[i][j];
+		}
+	}
 }
 
 coo::tracer::~tracer()
 {
-}
-
-void coo::tracer::addMove(const direction& d)
-{
-	this->moveHistory.push_back(d);
-}
-
-void coo::tracer::printHistory() const
-{
-	for (direction d : moveHistory) {
-		std::cout << " -> " << directionToString(d);
+	for (size_t i = 0; i < this->sizey; ++i) {
+		delete[] this->seenTiles[i];
+		delete[] this->blockedTiles[i];
 	}
-	std::cout <<std::endl;
+	delete[] this->seenTiles;
+	delete[] this->blockedTiles;
 }
 
-const coo::direction& coo::tracer::getLastMove() const
+coo::tracer& coo::tracer::operator=(const coo::tracer& t)
 {
-	return moveHistory.back();
+	if (this != &t) {
+		this->sizex = t.sizex;
+		this->sizey = t.sizey;
+		for (size_t i = 0; i < this->sizey; ++i) {
+			delete[] this->seenTiles[i];
+			delete[] this->blockedTiles[i];
+		}
+		delete[] this->seenTiles;
+		delete[] this->blockedTiles;
+
+		this->seenTiles = new bool*[this->sizey];
+		this->blockedTiles = new bool*[this->sizey];
+		for (size_t i = 0; i < this->sizey; ++i) {
+			this->seenTiles[i] = new bool[this->sizex];
+			this->blockedTiles[i] = new bool[this->sizex];
+			for (size_t j = 0; j < this->sizex; j++) {
+				this->seenTiles[i][j] = t.seenTiles[i][j];
+				this->blockedTiles[i][j] = t.blockedTiles[i][j];
+			}
+		}
+	}
+	return *this;
+}
+
+void coo::tracer::addMove(const int& x, const int& y, const direction& d)
+{
+	// todo: penser à mettre les deux cases dans seenTiles
+	// modification de blockedTiles ici (normalement)
+}
+
+bool coo::tracer::isAccessible(const int& x, const int& y) const
+{
+	return blockedTiles[y][x];
 }

@@ -2,45 +2,41 @@
 #include <fstream>
 #include <iostream>
 
-coo::grid::grid(const std::string& fileName)
+coo::grid::grid(const std::string& fileName, const int& size)
 {
-	int spacesize = 2;
+	//Lecture de la première ligne pour déterminer la taille du labyrinthe
 	std::ifstream file(fileName);
 	std::string line;
-	//Lecture de la première ligne pour déterminer la taille du labyrinthe
 	std::getline(file, line);
-
 	//Détermination du nombre de colonnes
-	this->size_x = 0;
+	this->sizex = 0;
 	for (size_t j = 0; j < line.size(); j++) {
-		if (j % 3 != 2) {
-			this->size_x += 1;
+		if (j % 3 != size) {
+			this->sizex++;
 		}
 	}
-
 	//Détermination du nombre de lignes
-	this->size_y = 0;
+	this->sizey = 0;
 	while (!file.eof()) {
-		size_y++;
+		this->sizey++;
 		std::getline(file, line);
 	}
-
 	//Retour au début du fichier
 	file.clear();
 	file.seekg(0);
 	std::getline(file, line);
 
 	//Transformation des caractères en booléens
-	this->tiles = new bool*[this->size_y];
-	for (size_t i = 0; i < size_y; ++i) {
-		this->tiles[i] = new bool[size_x];
+	this->tiles = new bool*[this->sizey];
+	for (size_t i = 0; i < this->sizey; ++i) {
+		this->tiles[i] = new bool[this->sizex];
 		int k = -1; //Décalement des colonnes
-		if (i != 0 || i != size_y) {
-			for (size_t j = 0; j < size_x; j++) {
-				if (j % 2 == 0) {
+		if (i != 0 || i != this->sizey) {
+			for (size_t j = 0; j < this->sizex; j++) {
+				if (j % size == 0) {
 					k++;
 				}
-				if (i == 0 || i == size_x-1 || j == 0 || j == size_y-1) {
+				if (i == 0 || i == this->sizey-1 || j == 0 || j == this->sizey-1) {
 					this->tiles[i][j] = false;
 				}
 				else {
@@ -60,13 +56,13 @@ coo::grid::grid(const std::string& fileName)
 	file.close();
 }
 
-coo::grid::grid(const grid& g) : size_x(g.size_x), size_y(g.size_y)
+coo::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
 {
-	this->tiles = new bool*[this->size_y];
-	for (size_t i = 0; i < size_y; ++i)
+	this->tiles = new bool*[this->sizey];
+	for (size_t i = 0; i < this->sizey; ++i)
 	{
-		this->tiles[i] = new bool[size_x];
-		for (size_t j = 0; j < size_x; ++j)
+		this->tiles[i] = new bool[this->sizex];
+		for (size_t j = 0; j < this->sizex; ++j)
 		{
 			this->tiles[i][j] = g.tiles[i][j];
 		}
@@ -75,7 +71,7 @@ coo::grid::grid(const grid& g) : size_x(g.size_x), size_y(g.size_y)
 
 coo::grid::~grid()
 {
-	for (size_t i = 0; i < this->size_y; ++i) {
+	for (size_t i = 0; i < this->sizey; ++i) {
 		delete[] this->tiles[i];
 	}
 	delete[] this->tiles;
@@ -84,16 +80,16 @@ coo::grid::~grid()
 coo::grid& coo::grid::operator=(const grid& g)
 {
 	if (this != &g) {
-		for (size_t i = 0; i < size_y; ++i) {
+		for (size_t i = 0; i < this->sizey; ++i) {
 			delete[] this->tiles[i];
 		}
 		delete[] this->tiles;
-		this->size_x = g.size_x;
-		this->size_y = g.size_y;
-		for (size_t i = 0; i < size_y; ++i)
+		this->sizex = g.sizex;
+		this->sizey = g.sizey;
+		for (size_t i = 0; i < this->sizey; ++i)
 		{
-			this->tiles[i] = new bool[size_x];
-			for (size_t j = 0; j < size_x; ++j)
+			this->tiles[i] = new bool[this->sizex];
+			for (size_t j = 0; j < this->sizex; ++j)
 			{
 				this->tiles[i][j] = g.tiles[i][j];
 			}
@@ -102,12 +98,21 @@ coo::grid& coo::grid::operator=(const grid& g)
 	return *this;
 }
 
-void coo::grid::printMaze(int posX, int posY) const
+int coo::grid::getX() const
 {
-	for (size_t i = 0; i < size_y; ++i) {
-		for (size_t j = 0; j < size_x; ++j) {
+	return this->sizex;
+}
+int coo::grid::getY() const
+{
+	return this->sizey;
+}
+
+void coo::grid::printMaze(const int& x, const int& y) const
+{
+	for (size_t i = 0; i < this->sizey; ++i) {
+		for (size_t j = 0; j < this->sizex; ++j) {
 			if (tiles[i][j]) {
-				if (j == posX && i == posY) {
+				if (j == x && i == y) {
 					std::cout << "X";
 				}
 				else {
@@ -123,16 +128,12 @@ void coo::grid::printMaze(int posX, int posY) const
 	std::cout << std::endl;
 }
 
-int coo::grid::getSizeX() const 
+void coo::grid::printMaze(const tracer& t) const
 {
-	return this->size_x;
-}
-int coo::grid::getSizeY() const
-{
-	return this->size_y;
+	//todo (voir si besoin de friend pour accéder à seenTiles de tracer??)
 }
 
-bool** coo::grid::getTiles() const
+bool coo::grid::isAccessible(const int& x, const int& y) const
 {
-	return this->tiles;
+	return this->tiles[y][x];
 }

@@ -4,11 +4,11 @@ namespace coo {
 	class yoloPlayer : public player
 	{
 		/**
-		 * Tourne la direction actuelle dans le sens antihoraire
+		 * Change la direction aléatoirement
 		 */
 		void changeDirection();
 	public:
 		yoloPlayer(const grid& g);
-		bool solve();
+		int solve();
 	};
 }

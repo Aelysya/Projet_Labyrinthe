@@ -7,38 +7,73 @@ namespace coo {
 	class tracer
 	{
 		/**
-		 * Ce vecteur contient une liste de direction qui
-		 * est l'historique des déplacements du joueur.
+		 * Nombre de lignes du labyrinthe.
 		 */
-		std::vector<direction> moveHistory;
+		int sizex;
+		/**
+		 * Nombre de colonnes du labyrinthe.
+		 */
+		int sizey;
 
 		/**
-		 * Convertit une direction énumération en string.
-		 *
-		 * \param d La direction à convertir
-		 * \return Un string avec le nom de la direction
+		 * Listes des cases visités
+		 * (true pour case visité)
 		 */
-		const std::string directionToString(const direction& d) const;
+		bool** seenTiles;
 
+		/**
+		 * Listes des cases n'étant pas/plus visitables
+		 * (false pour case bloquée)
+		 */
+		bool** blockedTiles;
+
+		/**
+		 * Nombre de mouvements réalisés
+		 */
+		int moves;
 	public:
-		tracer();
+		/**
+		 * Constructeur d'historique de déplacement
+		 *
+		 * \param x la longueur du labyrinthe
+		 * \param y la largeur du labyrinthe
+		 */
+		tracer(const int& x, const int& y);
+
+		/**
+		 * Constructeur par recopie
+		 *
+		 * \param t le tracer à recopier
+		 */
+		tracer(const tracer& t);
+
+		/**
+		 * Déconstructeur
+		 */
 		~tracer();
 
 		/**
-		 * Ajoute le dernier mouvement effectué par le
-		 * joueur dans l'historique.
+		 * Opérateur d'affectation
 		 *
-		 * \param d La direction prise par le joueur
+		 * \param t le tracer à affecter
 		 */
-		void addMove(const direction& d);
+		tracer& operator=(const tracer& t);
 
 		/**
-		 * Affiche l'historique des mouvements
-		 * du joueur sur la sortie principale.
+		 * Ajoute le dernier mouvement effectué
+		 * dans l'historique.
 		 *
+		 * \param x La position horizontale actuelle
+		 * \param y La position verticalled actuelle
+		 * \param d La direction choisie
 		 */
-		void printHistory() const;
+		void addMove(const int& x, const int& y, const direction& d);
 
-		const direction& getLastMove() const;
+		/**
+		 * Retourne l'état de la case (déplacement possible ou non)
+		 *
+		 * \return true si la case n'a pas complètement été explorée
+		 */
+		bool isAccessible(const int& x, const int& y) const;
 	};
 }
