@@ -1,7 +1,7 @@
 #include "tracer.h"
 #include <iostream>
 
-coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
+coo::tracer::tracer(const int& x, const int& y) : moveAmount(0), sizex(x), sizey(y)
 {
 	this->seenTiles = new bool*[y];
 	for (size_t i = 0; i < y; ++i) {
@@ -20,7 +20,7 @@ coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 	}
 }
 
-coo::tracer::tracer(const coo::tracer& t) : moves(t.moves), sizex(t.sizex), sizey(t.sizey)
+coo::tracer::tracer(const coo::tracer& t) : moveAmount(t.moveAmount), sizex(t.sizex), sizey(t.sizey)
 {
 	this->seenTiles = new bool*[this->sizey];
 	this->blockedTiles = new bool*[this->sizey];

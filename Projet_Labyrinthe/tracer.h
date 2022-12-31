@@ -30,7 +30,7 @@ namespace coo {
 		/**
 		 * Nombre de mouvements réalisés
 		 */
-		int moves;
+		int moveAmount;
 	public:
 		/**
 		 * Constructeur d'historique de déplacement

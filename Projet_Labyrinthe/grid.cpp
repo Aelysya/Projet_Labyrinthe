@@ -4,21 +4,20 @@
 
 coo::grid::grid(const std::string& fileName, const int& size)
 {
-	//Lecture de la première ligne pour déterminer la taille du labyrinthe
 	std::ifstream file(fileName);
 	std::string line;
 	std::getline(file, line);
 	//Détermination du nombre de colonnes
-	this->sizex = 0;
+	this->sizeX = 0;
 	for (size_t j = 0; j < line.size(); j++) {
 		if (j % 3 != size) {
-			this->sizex++;
+			this->sizeX++;
 		}
 	}
 	//Détermination du nombre de lignes
-	this->sizey = 0;
+	this->sizeY = 0;
 	while (!file.eof()) {
-		this->sizey++;
+		this->sizeY++;
 		std::getline(file, line);
 	}
 	//Retour au début du fichier
@@ -27,16 +26,16 @@ coo::grid::grid(const std::string& fileName, const int& size)
 	std::getline(file, line);
 
 	//Transformation des caractères en booléens
-	this->tiles = new bool*[this->sizey];
-	for (size_t i = 0; i < this->sizey; ++i) {
-		this->tiles[i] = new bool[this->sizex];
+	this->tiles = new bool*[this->sizeY];
+	for (size_t i = 0; i < this->sizeY; ++i) {
+		this->tiles[i] = new bool[this->sizeX];
 		int k = -1; //Décalement des colonnes
-		if (i != 0 || i != this->sizey) {
-			for (size_t j = 0; j < this->sizex; j++) {
+		if (i != 0 || i != this->sizeY) {
+			for (size_t j = 0; j < this->sizeX; j++) {
 				if (j % size == 0) {
 					k++;
 				}
-				if (i == 0 || i == this->sizey-1 || j == 0 || j == this->sizey-1) {
+				if (i == 0 || i == this->sizeY-1 || j == 0 || j == this->sizeY-1) {
 					this->tiles[i][j] = false;
 				}
 				else {
@@ -56,13 +55,13 @@ coo::grid::grid(const std::string& fileName, const int& size)
 	file.close();
 }
 
-coo::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
+coo::grid::grid(const grid& g) : sizeX(g.sizeX), sizeY(g.sizeY)
 {
-	this->tiles = new bool*[this->sizey];
-	for (size_t i = 0; i < this->sizey; ++i)
+	this->tiles = new bool*[this->sizeY];
+	for (size_t i = 0; i < this->sizeY; ++i)
 	{
-		this->tiles[i] = new bool[this->sizex];
-		for (size_t j = 0; j < this->sizex; ++j)
+		this->tiles[i] = new bool[this->sizeX];
+		for (size_t j = 0; j < this->sizeX; ++j)
 		{
 			this->tiles[i][j] = g.tiles[i][j];
 		}
@@ -71,7 +70,7 @@ coo::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
 
 coo::grid::~grid()
 {
-	for (size_t i = 0; i < this->sizey; ++i) {
+	for (size_t i = 0; i < this->sizeY; ++i) {
 		delete[] this->tiles[i];
 	}
 	delete[] this->tiles;
@@ -80,16 +79,16 @@ coo::grid::~grid()
 coo::grid& coo::grid::operator=(const grid& g)
 {
 	if (this != &g) {
-		for (size_t i = 0; i < this->sizey; ++i) {
+		for (size_t i = 0; i < this->sizeY; ++i) {
 			delete[] this->tiles[i];
 		}
 		delete[] this->tiles;
-		this->sizex = g.sizex;
-		this->sizey = g.sizey;
-		for (size_t i = 0; i < this->sizey; ++i)
+		this->sizeX = g.sizeX;
+		this->sizeY = g.sizeY;
+		for (size_t i = 0; i < this->sizeY; ++i)
 		{
-			this->tiles[i] = new bool[this->sizex];
-			for (size_t j = 0; j < this->sizex; ++j)
+			this->tiles[i] = new bool[this->sizeX];
+			for (size_t j = 0; j < this->sizeX; ++j)
 			{
 				this->tiles[i][j] = g.tiles[i][j];
 			}
@@ -98,19 +97,19 @@ coo::grid& coo::grid::operator=(const grid& g)
 	return *this;
 }
 
-int coo::grid::getX() const
+int coo::grid::getSizeX() const
 {
-	return this->sizex;
+	return this->sizeX;
 }
-int coo::grid::getY() const
+int coo::grid::getSizeY() const
 {
-	return this->sizey;
+	return this->sizeY;
 }
 
 void coo::grid::printMaze(const int& x, const int& y) const
 {
-	for (size_t i = 0; i < this->sizey; ++i) {
-		for (size_t j = 0; j < this->sizex; ++j) {
+	for (size_t i = 0; i < this->sizeY; ++i) {
+		for (size_t j = 0; j < this->sizeX; ++j) {
 			if (tiles[i][j]) {
 				if (j == x && i == y) {
 					std::cout << "X";
@@ -125,15 +124,9 @@ void coo::grid::printMaze(const int& x, const int& y) const
 		}
 		std::cout << std::endl;
 	}
-	std::cout << std::endl;
-}
-
-void coo::grid::printMaze(const tracer& t) const
-{
-	//todo (voir si besoin de friend pour accéder à seenTiles de tracer??)
 }
 
 bool coo::grid::isAccessible(const int& x, const int& y) const
 {
-	return this->tiles[y][x];
+	return this->tiles[x][y];
 }

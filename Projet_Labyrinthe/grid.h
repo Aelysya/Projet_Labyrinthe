@@ -8,17 +8,17 @@ namespace coo {
 		/**
 		 * Nombre de lignes du labyrinthe.
 		 */
-		int sizex;
+		int sizeX;
 		/**
 		 * Nombre de colonnes du labyrinthe.
 		 */
-		int sizey;
+		int sizeY;
 
 		/**
 		 * Liste des cases du labyrinthe.
 		 * Les cases ont comme valeur 'vrai' lorsque
-		 * celles-ci correspondent à un chemin
-		 * (false = mur)
+		 * celles-ci correspondent à un chemin et 'false'
+		 * lorsqu'elle correspondent à un mur.
 		 */
 		bool** tiles;
 
@@ -51,8 +51,8 @@ namespace coo {
 		 */
 		grid& operator=(const grid& g);
 
-		int getX() const;
-		int getY() const;
+		int getSizeX() const;
+		int getSizeY() const;
 
 		/**
 		 * Affiche une position dans le labyrinthe
@@ -61,13 +61,6 @@ namespace coo {
 		 * \param posY Position verticale
 		 */
 		void printMaze(const int& x, const int& y) const;
-
-		/**
-		 * Affiche le labyrinthe avec le tracer de déplacement donné
-		 *
-		 * \param t Le tracer représentant les déplacements
-		 */
-		void printMaze(const tracer& t) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)

@@ -46,22 +46,8 @@ namespace coo {
 		 * et ajoute le mouvement à l'historique.
 		 *
 		 * \param d La direction prise par le joueur
-		 * \return Si le joueur a effectué le déplacement
 		 */
-		bool operator+=(const direction& d);
-		
-	public:
-		/**
-		 * Constructeur de joueur
-		 *
-		 * \param g le labyrinthe à parcourir
-		 */
-		player(const grid& g);
-
-		/**
-		 * Affiche l'historique des mouvements effectués.
-		 */
-		void printHistory() const;
+		void operator+=(const direction& d);
 
 		/**
 		 * Affiche le labyrinthe avec la position du joueur.
@@ -69,11 +55,26 @@ namespace coo {
 		void printPosition() const;
 
 		/**
-		 * Résolution du labyrinthe
-		 * 
-		 * \return Le nombre de cases parcourues nécessaire
-		 * à la résolution ou -1 si c'est impossible
+		 * Renvoie la prochaine direction qui devra être prise par le joueur
 		 */
-		virtual int solve() = 0;
+		virtual direction getNextDirection() = 0;
+	public:
+		/**
+		 * Constructeur de player.
+		 * 
+		 * \param fileName Le nom du fichier dans lequel sera 
+		 * lu le labyrinthe où le joueur sera placé
+		 */
+		player(const std::string& fileName);
+
+		/**
+		 * Affiche l'historique des mouvements effectués.
+		 */
+		void printHistory() const;
+
+		/**
+		 * Résolution du labyrinthe
+		 */
+		virtual void solve() = 0;
 	};
 }

@@ -2,12 +2,12 @@
 
 namespace coo {
 	/**
-	 * Cette énumération défini les 4 directions de déplacement possibles.
+	 * Cette énumération définit les 4 directions de déplacement possibles.
 	 */
 	enum direction {
-		UP,
-		DOWN,
-		RIGHT,
-		LEFT
+		UP = 0,
+		DOWN = 1,
+		RIGHT = 2,
+		LEFT = 3
 	};
 }

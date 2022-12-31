@@ -2,11 +2,10 @@
 //
 
 #include <iostream>
-#include "solver.h"
-
-//To remove
-#include "grid.h"
+#include "leftPlayer.h"
+#include "rightPlayer.h"
 #include "yoloplayer.h"
+#include "solver.h"
 
 using namespace coo;
 
@@ -23,19 +22,27 @@ int main()
 	//sinon -> step1
 
 	//3: Résolution du labyrinthe
-	solver s("lab3_3x3.txt", 2);
+	//solver s("lab3_3x3.txt", 2);
 	//4: Affichage du résultat
 	//s.solve();
-
+	
 	//Tests autres
-	grid g("lab3_3x3.txt", 2);
-	g.printMaze(1,1);
+	//grid g("lab3_3x3.txt", 2);
+	//g.printMaze(1,1);
 	/*yoloPlayer p(g);
 
 	p.printMaze();
 	p.solve();
 	p.printMaze();
 	p.printHistory();*/
+
+	leftPlayer lp("lab3_3x3.txt");
+	rightPlayer rp("lab3_3x3.txt");
+	yoloPlayer yp("lab3_3x3.txt");
+
+	lp.solve();
+	rp.solve();
+	yp.solve();
 }
 
 
