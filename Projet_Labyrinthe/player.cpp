@@ -5,6 +5,11 @@ coo::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2)
 {
 }
 
+void coo::player::printHistory() const
+{
+	this->moveHistory.printHistory();
+}
+
 bool coo::player::operator+(const direction& d) const
 {
 	bool canMove = false;

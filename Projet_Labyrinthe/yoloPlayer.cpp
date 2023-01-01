@@ -9,7 +9,6 @@ coo::yoloPlayer::yoloPlayer(const std::string& fileName) : player(fileName)
 
 void coo::yoloPlayer::solve()
 {
-	std::cout << "yoloPlayer solve" << std::endl;
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
 		printPosition();

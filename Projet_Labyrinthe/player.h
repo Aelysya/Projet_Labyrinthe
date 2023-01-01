@@ -68,6 +68,11 @@ namespace coo {
 		player(const std::string& fileName);
 
 		/**
+		 * Affiche l'historique des mouvements effectués.
+		 */
+		void printHistory() const;
+
+		/**
 		 * Résolution du labyrinthe
 		 */
 		virtual void solve() = 0;

@@ -7,12 +7,10 @@ coo::leftPlayer::leftPlayer(const std::string& fileName) : player(fileName)
 
 void coo::leftPlayer::solve()
 {
-	std::cout << "leftPlayer solve" << std::endl;
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
 		printPosition();
 	}
-	this->moveHistory.printHistory();
 }
 
 coo::direction coo::leftPlayer::getNextDirection()

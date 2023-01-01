@@ -7,7 +7,6 @@ coo::stairPlayer::stairPlayer(const std::string& fileName) : player(fileName)
 
 void coo::stairPlayer::solve()
 {
-	std::cout << "stairPlayer solve" << std::endl;
 	int playerBlockedCounter = 0;
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		if (*this + getNextDirection()) {
