@@ -7,7 +7,7 @@
 #include "Chrono.h"
 #include "Logger.h"
 
-using namespace coo;
+using namespace players;
 
 int main()
 {

@@ -1,22 +1,22 @@
 #include "tracer.h"
 #include <iostream>
 
-coo::tracer::tracer()
+utility::tracer::tracer()
 {
 }
 
-coo::tracer::tracer(const coo::tracer& t)
+utility::tracer::tracer(const utility::tracer& t)
 {
 	for (direction d : t.moveHistory) {
 		this->moveHistory.push_back(d);
 	}
 }
 
-coo::tracer::~tracer()
+utility::tracer::~tracer()
 {
 }
 
-coo::tracer& coo::tracer::operator=(const coo::tracer& t)
+utility::tracer& utility::tracer::operator=(const utility::tracer& t)
 {
 	this->moveHistory.clear();
 	for (direction d : t.moveHistory) {
@@ -25,12 +25,12 @@ coo::tracer& coo::tracer::operator=(const coo::tracer& t)
 	return *this;
 }
 
-void coo::tracer::addMove(const direction& d)
+void utility::tracer::addMove(const direction& d)
 {
 	this->moveHistory.push_back(d);
 }
 
-void coo::tracer::printHistory() const
+void utility::tracer::printHistory() const
 {
 	std::string directionString;
 	for (direction d : moveHistory) {

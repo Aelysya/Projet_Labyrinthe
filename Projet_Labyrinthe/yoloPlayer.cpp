@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-coo::yoloPlayer::yoloPlayer(const std::string& fileName) : player(fileName)
+using namespace utility;
+
+players::yoloPlayer::yoloPlayer(const std::string& fileName) : player(fileName)
 {
 }
 
-void coo::yoloPlayer::solve()
+void players::yoloPlayer::solve()
 {
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
@@ -15,7 +17,7 @@ void coo::yoloPlayer::solve()
 	}
 }
 
-coo::direction coo::yoloPlayer::getNextDirection()
+direction players::yoloPlayer::getNextDirection()
 {
 	srand(time(NULL));
 	do {

@@ -1,16 +1,18 @@
 #include <iostream>
 #include "player.h"
 
-coo::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2), currentDirection(RIGHT)
+using namespace utility;
+
+players::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2), currentDirection(RIGHT)
 {
 }
 
-void coo::player::printHistory() const
+void players::player::printHistory() const
 {
 	this->moveHistory.printHistory();
 }
 
-bool coo::player::operator+(const direction& d) const
+bool players::player::operator+(const direction& d) const
 {
 	bool canMove = false;
 	switch (d) {
@@ -30,7 +32,7 @@ bool coo::player::operator+(const direction& d) const
 	return canMove;
 }
 
-void coo::player::operator+=(const direction& d)
+void players::player::operator+=(const direction& d)
 {
 	switch (d) {
 	case UP :
@@ -49,7 +51,7 @@ void coo::player::operator+=(const direction& d)
 	this->moveHistory.addMove(d);
 }
 
-void coo::player::printPosition() const
+void players::player::printPosition() const
 {
 	this->maze.printMaze(this->x, this->y);
 }

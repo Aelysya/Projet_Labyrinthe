@@ -1,12 +1,12 @@
 #pragma once
 #include "player.h"
-namespace coo {
+namespace utility {
 	class solver
 	{
 		/**
 		 * Les joueurs du labyrinthe
 		 */
-		std::vector<player*> players;
+		std::vector<players::player*> players;
 		
 		/**
 		 * Résout la grille pour l'heuristique

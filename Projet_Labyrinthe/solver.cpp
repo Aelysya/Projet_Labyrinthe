@@ -3,22 +3,24 @@
 #include "rightplayer.h"
 #include "yoloplayer.h"
 
-coo::solver::solver(const std::string& filename)
+using namespace players;
+
+utility::solver::solver(const std::string& filename)
 {
 	//Ajout des joueurs
-	coo::leftPlayer p1(filename);
-	coo::rightPlayer p2(filename);
-	coo::yoloPlayer p3(filename);
-	//coo::stairsPlayer p4(g);
-	//coo::customPlayer p5(g);
+	leftPlayer p1(filename);
+	rightPlayer p2(filename);
+	yoloPlayer p3(filename);
+	//players::stairsPlayer p4(g);
+	//players::customPlayer p5(g);
 	this->players.push_back(&p1);
 	this->players.push_back(&p2);
 	this->players.push_back(&p3);
-	//this->playerlist.push_back(coo::stairsPlayer(g));
-	//this->playerlist.push_back(coo::customPlayer(g));
+	//this->playerlist.push_back(players::stairsPlayer(g));
+	//this->playerlist.push_back(players::customPlayer(g));
 }
 
-int coo::solver::solve(const int& p)
+int utility::solver::solve(const int& p)
 {
 	for (player* p : players) {
 		p->solve();
@@ -26,7 +28,7 @@ int coo::solver::solve(const int& p)
 	return 0;
 }
 
-void coo::solver::solve()
+void utility::solver::solve()
 {
 	for (player* p : players) {
 		p->solve();

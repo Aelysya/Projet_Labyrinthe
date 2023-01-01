@@ -4,7 +4,7 @@
 #include "grid.h"
 #include <string>
 
-namespace coo {
+namespace players {
 	class player
 	{
 	protected:
@@ -26,12 +26,12 @@ namespace coo {
 		/*
 		* La direction actuelle du joueur.
 		*/
-		direction currentDirection;
+		utility::direction currentDirection;
 
 		/**
 		 * Le labyrinthe à résoudre.
 		 */
-		grid maze;
+		utility::grid maze;
 
 		/**
 		 * Vérifie que le déplacement voulant être effectué est possible.
@@ -39,7 +39,7 @@ namespace coo {
 		 * \param d La direction voulant être prise par le joueur
 		 * \return Si le joueur peut se déplacer dans la direction voulue
 		 */
-		bool operator+(const direction& d) const;
+		bool operator+(const utility::direction& d) const;
 
 		/**
 		 * Déplace le joueur dans la direction donnée
@@ -47,7 +47,7 @@ namespace coo {
 		 *
 		 * \param d La direction prise par le joueur
 		 */
-		void operator+=(const direction& d);
+		void operator+=(const utility::direction& d);
 
 		/**
 		 * Affiche le labyrinthe avec la position du joueur.
@@ -57,7 +57,7 @@ namespace coo {
 		/**
 		 * Renvoie la prochaine direction qui devra être prise par le joueur
 		 */
-		virtual direction getNextDirection() = 0;
+		virtual utility::direction getNextDirection() = 0;
 	public:
 		/**
 		 * Constructeur de player.

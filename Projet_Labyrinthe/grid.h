@@ -2,7 +2,7 @@
 #include <string>
 #include "tracer.h"
 
-namespace coo {
+namespace utility {
 	class grid
 	{
 		/**

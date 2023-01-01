@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-namespace coo {
+namespace utility {
 	class tracer
 	{
 	private:

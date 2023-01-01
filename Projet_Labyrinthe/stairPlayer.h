@@ -1,14 +1,14 @@
 #pragma once
 #include "player.h"
 
-namespace coo {
+namespace players {
 	class stairPlayer : public player
 	{
 	private:
 		/**
 		 * Renvoie la prochaine direction qui devra être prise par le joueur
 		 */
-		direction getNextDirection();
+		utility::direction getNextDirection();
 	public:
 		/**
 		 * Constructeur de rightPlayer.

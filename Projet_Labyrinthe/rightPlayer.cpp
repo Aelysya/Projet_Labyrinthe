@@ -1,11 +1,13 @@
 #include <iostream>
 #include "rightPlayer.h"
 
-coo::rightPlayer::rightPlayer(const std::string& fileName) : player(fileName)
+using namespace utility;
+
+players::rightPlayer::rightPlayer(const std::string& fileName) : player(fileName)
 {
 }
 
-void coo::rightPlayer::solve()
+void players::rightPlayer::solve()
 {
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
@@ -13,7 +15,7 @@ void coo::rightPlayer::solve()
 	}
 }
 
-coo::direction coo::rightPlayer::getNextDirection()
+direction players::rightPlayer::getNextDirection()
 {
 	switch (this->currentDirection) {
 	case UP:

@@ -1,11 +1,13 @@
 #include <iostream>
 #include "stairPlayer.h"
 
-coo::stairPlayer::stairPlayer(const std::string& fileName) : player(fileName)
+using namespace utility;
+
+players::stairPlayer::stairPlayer(const std::string& fileName) : player(fileName)
 {
 }
 
-void coo::stairPlayer::solve()
+void players::stairPlayer::solve()
 {
 	int playerBlockedCounter = 0;
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
@@ -26,7 +28,7 @@ void coo::stairPlayer::solve()
 	}
 }
 
-coo::direction coo::stairPlayer::getNextDirection()
+direction players::stairPlayer::getNextDirection()
 {
 	direction nextDirection;
 	switch (this->currentDirection) {
