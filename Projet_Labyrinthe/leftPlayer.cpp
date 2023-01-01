@@ -12,6 +12,7 @@ void coo::leftPlayer::solve()
 		*this += getNextDirection();
 		printPosition();
 	}
+	this->moveHistory.printHistory();
 }
 
 coo::direction coo::leftPlayer::getNextDirection()

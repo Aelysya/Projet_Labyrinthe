@@ -1,7 +1,7 @@
 #include <iostream>
 #include "player.h"
 
-coo::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2), moveHistory(maze.getSizeX(), maze.getSizeY()), currentDirection(RIGHT)
+coo::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2), currentDirection(RIGHT)
 {
 }
 
@@ -41,12 +41,7 @@ void coo::player::operator+=(const direction& d)
 		this->x -= 2;
 		break;
 	}
-	this->moveHistory.addMove(this->x, this->y, d);
-}
-
-void coo::player::printHistory() const
-{
-	//todo: this->maze.printMaze(this->moveHistory);
+	this->moveHistory.addMove(d);
 }
 
 void coo::player::printPosition() const

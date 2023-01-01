@@ -6,31 +6,11 @@
 namespace coo {
 	class tracer
 	{
+	private:
 		/**
-		 * Nombre de lignes du labyrinthe.
+		 * L'historique des mouvements d'un joueur.
 		 */
-		int sizex;
-		/**
-		 * Nombre de colonnes du labyrinthe.
-		 */
-		int sizey;
-
-		/**
-		 * Listes des cases visités
-		 * (true pour case visité)
-		 */
-		bool** seenTiles;
-
-		/**
-		 * Listes des cases n'étant pas/plus visitables
-		 * (false pour case bloquée)
-		 */
-		bool** blockedTiles;
-
-		/**
-		 * Nombre de mouvements réalisés
-		 */
-		int moveAmount;
+		std::vector<direction> moveHistory;
 	public:
 		/**
 		 * Constructeur d'historique de déplacement
@@ -38,7 +18,7 @@ namespace coo {
 		 * \param x la longueur du labyrinthe
 		 * \param y la largeur du labyrinthe
 		 */
-		tracer(const int& x, const int& y);
+		tracer();
 
 		/**
 		 * Constructeur par recopie
@@ -67,13 +47,12 @@ namespace coo {
 		 * \param y La position verticalled actuelle
 		 * \param d La direction choisie
 		 */
-		void addMove(const int& x, const int& y, const direction& d);
+		void addMove(const direction& d);
 
 		/**
-		 * Retourne l'état de la case (déplacement possible ou non)
-		 *
-		 * \return true si la case n'a pas complètement été explorée
+		 * Affiche l'historique des mouvements du joueur.
+		 * 
 		 */
-		bool isAccessible(const int& x, const int& y) const;
+		void printHistory() const;
 	};
 }

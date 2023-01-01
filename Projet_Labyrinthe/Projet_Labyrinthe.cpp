@@ -2,7 +2,8 @@
 #include <fstream>
 #include "leftPlayer.h"
 #include "rightPlayer.h"
-#include "yoloplayer.h"
+#include "yoloPlayer.h"
+#include "stairPlayer.h"
 #include "solver.h"
 
 using namespace coo;
@@ -24,11 +25,13 @@ int main()
 
 	leftPlayer lp(fileName);
 	rightPlayer rp(fileName);
-	yoloPlayer yp(fileName);
+	//yoloPlayer yp(fileName);
+	//stairPlayer sp(fileName);
 
 	lp.solve();
 	rp.solve();
-	yp.solve();
+	//yp.solve();
+	//sp.solve();
 }
 
 

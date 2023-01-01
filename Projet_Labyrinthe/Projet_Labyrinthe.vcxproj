@@ -133,6 +133,7 @@
     <ClCompile Include="Projet_Labyrinthe.cpp" />
     <ClCompile Include="rightPlayer.cpp" />
     <ClCompile Include="solver.cpp" />
+    <ClCompile Include="stairPlayer.cpp" />
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="yoloPlayer.cpp" />
   </ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="rightPlayer.h" />
     <ClInclude Include="solver.h" />
+    <ClInclude Include="stairPlayer.h" />
     <ClInclude Include="tracer.h" />
     <ClInclude Include="yoloPlayer.h" />
   </ItemGroup>
