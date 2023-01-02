@@ -1,14 +1,14 @@
 #include "solver.h"
-#include "leftplayer.h"
+#include "leftIfNotForwardPlayer.h"
 
 coo::solver::solver(const coo::grid& g) : g(g)
 {
-	playerlist.push_back(new coo::leftPlayer(this->g));
+	playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
 }
 
 coo::solver::solver(const coo::solver& s) : g(s.g)
 {
-	playerlist.push_back(new coo::leftPlayer(this->g));
+	playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
 }
 
 coo::solver::~solver()
@@ -27,7 +27,7 @@ coo::solver& coo::solver::operator=(const solver& s)
 			delete p;
 		}
 		this->playerlist.clear();
-		playerlist.push_back(new coo::leftPlayer(this->g));
+		playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
 	}
 	return *this;
 }

@@ -63,7 +63,7 @@ void coo::player::printHistory() const
 		for (size_t j = 0; j < this->maze.getX(); ++j) {
 			if (this->maze.isAccessible(j,i)) {
 				if (j == x && i == y) {
-					std::cout << "P";
+					std::cout << "X";
 				}
 				else {
 					if (this->moveHistory.isSeen(j,i)) {

@@ -99,20 +99,20 @@ void coo::tracer::checkBlocked(const int& x, const int& y, const direction& d, c
 
 	switch (d) {
 	case UP:
-		this->blockedTiles[y - 1][x] = blckdown && blckleft && blckright;
+		this->blockedTiles[y - 1][x] = blckdown || blckleft || blckright;
 		break;
 	case DOWN:
-		this->blockedTiles[y + 1][x] = blckup && blckleft && blckright;
+		this->blockedTiles[y + 1][x] = blckup || blckleft || blckright;
 		break;
 	case RIGHT:
-		this->blockedTiles[y][x + 1] = blckdown && blckleft && blckup;
+		this->blockedTiles[y][x + 1] = blckdown || blckleft || blckup;
 		break;
 	case LEFT:
-		this->blockedTiles[y][x - 1] = blckdown && blckup && blckright;
+		this->blockedTiles[y][x - 1] = blckdown || blckup || blckright;
 		break;
 	}
 
-	std::cout << "blockedTiles" << std::endl;
+	/*std::cout << "blockedTiles" << std::endl;
 	for (size_t i = 0; i < this->sizey; ++i) {
 		for (size_t j = 0; j < this->sizex; ++j) {
 			if (this->blockedTiles[i][j]) {
@@ -124,7 +124,7 @@ void coo::tracer::checkBlocked(const int& x, const int& y, const direction& d, c
 		}
 		std::cout << std::endl;
 	}
-	std::cout << std::endl;
+	std::cout << std::endl;*/
 }
 
 bool coo::tracer::isSeen(const int& x, const int& y) const

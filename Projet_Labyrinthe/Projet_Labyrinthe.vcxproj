@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
-    <ClCompile Include="leftPlayer.cpp" />
+    <ClCompile Include="leftIfNotForwardPlayer.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Projet_Labyrinthe.cpp" />
     <ClCompile Include="solver.cpp" />
@@ -137,7 +137,7 @@
   <ItemGroup>
     <ClInclude Include="grid.h" />
     <ClInclude Include="direction.h" />
-    <ClInclude Include="leftPlayer.h" />
+    <ClInclude Include="leftIfNotForwardPlayer.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="solver.h" />
     <ClInclude Include="tracer.h" />

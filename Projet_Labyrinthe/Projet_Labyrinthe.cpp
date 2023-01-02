@@ -4,8 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include "solver.h"
-
-//To remove
 #include "grid.h"
 
 using namespace coo;
