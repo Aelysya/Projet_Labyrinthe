@@ -32,6 +32,7 @@ int main()
 		std::cout << "La grille est de taille invalide, vérifier le fichier." << std::endl;
 		exit(-1);
 	}
+
 	//leftPlayer
 	leftPlayer lp(g);
 	logger.info("leftPlayer solve :");
@@ -78,9 +79,14 @@ int main()
 
 	//Affichage des temps de résolution
 	logger.info("Temps de resolution leftPlayer: " + std::to_string(chronoLeftPlayer.getElapsedTimeSeconds()) + "s");
+	logger.info("leftPlayer a pris " + std::to_string(lp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
 	logger.info("Temps de resolution rightPlayer: " + std::to_string(chronoRightPlayer.getElapsedTimeSeconds()) + "s");
+	logger.info("rightPlayer a pris " + std::to_string(rp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
 	logger.info("Temps de resolution yoloPlayer: " + std::to_string(chronoYoloPlayer.getElapsedTimeSeconds()) + "s");
+	logger.info("yoloPlayer a pris " + std::to_string(yp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
 	logger.info("Temps de resolution stairPlayer: " + std::to_string(chronoStairPlayer.getElapsedTimeSeconds()) + "s");
+	logger.info("stairPlayer a pris " + std::to_string(sp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
+
 }
 
 

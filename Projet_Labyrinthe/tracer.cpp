@@ -30,6 +30,11 @@ void utility::tracer::addMove(const direction& d)
 	this->moveHistory.push_back(d);
 }
 
+int utility::tracer::getNumberOfSteps() const
+{
+	return this->moveHistory.size();
+}
+
 void utility::tracer::printHistory() const
 {
 	std::string directionString;

@@ -25,7 +25,7 @@ namespace utility {
 		 * dequel sera lu la structure du labyrinthe
 		 * \param size la largeur des cases
 		 */
-		solver(const std::string& filename);
+		solver(const grid& g);
 
 		/**
 		 * Résout la grille avec différentes heuristiques,

@@ -50,6 +50,13 @@ namespace utility {
 		void addMove(const direction& d);
 
 		/**
+		 * Getter pour le nombre de pas effectués.
+		 *
+		 * \return Le nombre de pas effectué pour sortir du labyrinthe
+		 */
+		int getNumberOfSteps() const;
+
+		/**
 		 * Affiche l'historique des mouvements du joueur.
 		 * 
 		 */

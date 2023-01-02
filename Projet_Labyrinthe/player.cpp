@@ -16,6 +16,11 @@ void players::player::printHistory() const
 	this->moveHistory.printHistory();
 }
 
+int players::player::getNumberOfSteps() const
+{
+	return this->moveHistory.getNumberOfSteps();
+}
+
 bool players::player::operator+(const direction& d) const
 {
 	bool canMove = false;

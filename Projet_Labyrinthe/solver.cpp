@@ -1,23 +1,24 @@
 #include "solver.h"
-#include "leftplayer.h"
-#include "rightplayer.h"
-#include "yoloplayer.h"
+#include "leftPlayer.h"
+#include "rightPlayer.h"
+#include "yoloPlayer.h"
+#include "stairPlayer.h"
 
 using namespace players;
 
-utility::solver::solver(const std::string& filename)
+utility::solver::solver(const utility::grid& g)
 {
 	//Ajout des joueurs
-	//leftPlayer p1(filename);
-	//rightPlayer p2(filename);
-	//yoloPlayer p3(filename);
-	//players::stairsPlayer p4(g);
+	leftPlayer p1(g);
+	rightPlayer p2(g);
+	//yoloPlayer p3(g);
+	stairPlayer p4(g);
 	//players::customPlayer p5(g);
-	//this->players.push_back(&p1);
-	//this->players.push_back(&p2);
+	this->players.push_back(&p1);
+	this->players.push_back(&p2);
 	//this->players.push_back(&p3);
-	//this->playerlist.push_back(players::stairsPlayer(g));
-	//this->playerlist.push_back(players::customPlayer(g));
+	this->players.push_back(&p4);
+	//this->players.push_back(&p5);
 }
 
 int utility::solver::solve(const int& p)
@@ -30,9 +31,6 @@ int utility::solver::solve(const int& p)
 
 void utility::solver::solve()
 {
-	for (player* p : players) {
-		p->solve();
-	}
 	/*int min = INT_MAX;
 	int minSolver = -1;
 	int currentMin = 0;

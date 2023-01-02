@@ -66,11 +66,18 @@ namespace players {
 		 * lu le labyrinthe où le joueur sera placé
 		 */
 		player(const utility::grid& grid);
-		~player();
+		virtual ~player();
 		/**
 		 * Affiche l'historique des mouvements effectués.
 		 */
 		void printHistory() const;
+
+		/**
+		 * Getter pour le nombre de pas effectués.
+		 * 
+		 * \return Le nombre de pas effectué pour sortir du labyrinthe
+		 */
+		int getNumberOfSteps() const;
 
 		/**
 		 * Résolution du labyrinthe
