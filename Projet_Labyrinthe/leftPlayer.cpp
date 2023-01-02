@@ -3,7 +3,7 @@
 
 using namespace utility;
 
-players::leftPlayer::leftPlayer(const std::string& fileName) : player(fileName)
+players::leftPlayer::leftPlayer(const grid& grid) : player(grid)
 {
 }
 

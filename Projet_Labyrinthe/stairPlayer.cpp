@@ -3,7 +3,7 @@
 
 using namespace utility;
 
-players::stairPlayer::stairPlayer(const std::string& fileName) : player(fileName)
+players::stairPlayer::stairPlayer(const grid& grid) : player(grid)
 {
 }
 

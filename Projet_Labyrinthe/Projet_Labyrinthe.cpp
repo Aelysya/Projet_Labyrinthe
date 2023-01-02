@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "grid.h"
 #include "leftPlayer.h"
 #include "rightPlayer.h"
 #include "yoloPlayer.h"
@@ -8,6 +9,7 @@
 #include "Logger.h"
 
 using namespace players;
+using namespace utility;
 
 int main()
 {
@@ -25,9 +27,13 @@ int main()
 	} while (!fileNameOk);
 
 	Logger logger("logger", INFO, "stdout");
-
+	grid g(fileName, 2);
+	if (!(g.getSizeX() % 2 || g.getSizeY() % 2)) {
+		std::cout << "La grille est de taille invalide, vérifier le fichier." << std::endl;
+		exit(-1);
+	}
 	//leftPlayer
-	leftPlayer lp(fileName);
+	leftPlayer lp(g);
 	logger.info("leftPlayer solve :");
 	Chrono chronoLeftPlayer;
 
@@ -37,7 +43,7 @@ int main()
 	//lp.printHistory();
 	
 	//rightPlayer
-	rightPlayer rp(fileName);
+	rightPlayer rp(g);
 	logger.info("rightPlayer solve :");
 	Chrono chronoRightPlayer;
 
@@ -48,7 +54,7 @@ int main()
 
 
 	//yoloPlayer
-	yoloPlayer yp(fileName);
+	yoloPlayer yp(g);
 	logger.info("yoloPlayer solve :");
 	Chrono chronoYoloPlayer;
 
@@ -59,7 +65,7 @@ int main()
 
 
 	//stairPlayer
-	stairPlayer sp(fileName);
+	stairPlayer sp(g);
 	logger.info("stairPlayer solve :");
 	Chrono chronoStairPlayer;
 

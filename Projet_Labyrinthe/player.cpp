@@ -3,7 +3,11 @@
 
 using namespace utility;
 
-players::player::player(const std::string& fileName) : x(1), y(1), maze(fileName, 2), currentDirection(RIGHT)
+players::player::player(const grid& grid) : x(1), y(1), maze(grid), currentDirection(RIGHT)
+{
+}
+
+players::player::~player()
 {
 }
 

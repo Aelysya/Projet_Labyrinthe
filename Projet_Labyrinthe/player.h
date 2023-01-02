@@ -21,7 +21,7 @@ namespace players {
 		/**
 		 * L'historique des mouvements du joueur.
 		 */
-		tracer moveHistory;
+		utility::tracer moveHistory;
 
 		/*
 		* La direction actuelle du joueur.
@@ -65,8 +65,8 @@ namespace players {
 		 * \param fileName Le nom du fichier dans lequel sera 
 		 * lu le labyrinthe où le joueur sera placé
 		 */
-		player(const std::string& fileName);
-
+		player(const utility::grid& grid);
+		~player();
 		/**
 		 * Affiche l'historique des mouvements effectués.
 		 */

@@ -8,14 +8,14 @@ using namespace players;
 utility::solver::solver(const std::string& filename)
 {
 	//Ajout des joueurs
-	leftPlayer p1(filename);
-	rightPlayer p2(filename);
-	yoloPlayer p3(filename);
+	//leftPlayer p1(filename);
+	//rightPlayer p2(filename);
+	//yoloPlayer p3(filename);
 	//players::stairsPlayer p4(g);
 	//players::customPlayer p5(g);
-	this->players.push_back(&p1);
-	this->players.push_back(&p2);
-	this->players.push_back(&p3);
+	//this->players.push_back(&p1);
+	//this->players.push_back(&p2);
+	//this->players.push_back(&p3);
 	//this->playerlist.push_back(players::stairsPlayer(g));
 	//this->playerlist.push_back(players::customPlayer(g));
 }

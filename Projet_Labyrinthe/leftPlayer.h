@@ -15,7 +15,7 @@ namespace players {
 		 * \param fileName Le nom du fichier dans lequel sera
 		 * lu le labyrinthe où le joueur sera placé
 		 */
-		leftPlayer(const std::string& fileName);
+		leftPlayer(const utility::grid& grid);
 
 		/**
 		 * Résolution du labyrinthe

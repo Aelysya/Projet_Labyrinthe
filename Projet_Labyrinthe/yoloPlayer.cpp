@@ -5,7 +5,7 @@
 
 using namespace utility;
 
-players::yoloPlayer::yoloPlayer(const std::string& fileName) : player(fileName)
+players::yoloPlayer::yoloPlayer(const grid& grid) : player(grid)
 {
 }
 
