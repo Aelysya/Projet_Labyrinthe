@@ -7,6 +7,7 @@
 #include "stairPlayer.h"
 #include "Chrono.h"
 #include "Logger.h"
+#include "solver.h"
 
 using namespace players;
 using namespace utility;
@@ -33,6 +34,9 @@ int main()
 		exit(-1);
 	}
 
+	solver s(g);
+	s.solve();
+	/*
 	//leftPlayer
 	leftPlayer lp(g);
 	logger.info("leftPlayer solve :");
@@ -86,7 +90,7 @@ int main()
 	logger.info("yoloPlayer a pris " + std::to_string(yp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
 	logger.info("Temps de resolution stairPlayer: " + std::to_string(chronoStairPlayer.getElapsedTimeSeconds()) + "s");
 	logger.info("stairPlayer a pris " + std::to_string(sp.getNumberOfSteps()) + " pas pour sortir du labyrinthe");
-
+	*/
 }
 
 

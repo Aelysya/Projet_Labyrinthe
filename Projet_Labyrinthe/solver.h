@@ -7,25 +7,17 @@ namespace utility {
 		 * Les joueurs du labyrinthe
 		 */
 		std::vector<players::player*> players;
-		
-		/**
-		 * Résout la grille pour l'heuristique
-		 *
-		 * \param p La position du player dans la liste
-		 * \return Le nombre de cases parcourues nécessaire
-		 * à la résolution ou -1 si c'est impossible
-		 */
-		int solve(const int& p);
 
 	public:
 		/**
-		 * Résolveur de labyrinthe de case de largeur variable
+		 * Résolveur de labyrinthe
 		 *
-		 * \param fileName nom du fichier texte à partir 
-		 * dequel sera lu la structure du labyrinthe
-		 * \param size la largeur des cases
+		 * \param g le labyrinthe à résoudre
 		 */
 		solver(const grid& g);
+		solver(const solver& s);
+		~solver();
+		solver& operator=(const solver& s);
 
 		/**
 		 * Résout la grille avec différentes heuristiques,

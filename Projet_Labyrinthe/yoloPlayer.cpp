@@ -11,6 +11,7 @@ players::yoloPlayer::yoloPlayer(const grid& grid) : player(grid)
 
 void players::yoloPlayer::solve()
 {
+	printPosition();
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
 		printPosition();

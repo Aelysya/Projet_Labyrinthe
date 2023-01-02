@@ -9,6 +9,7 @@ players::rightPlayer::rightPlayer(const grid& grid) : player(grid)
 
 void players::rightPlayer::solve()
 {
+	printPosition();
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		*this += getNextDirection();
 		printPosition();

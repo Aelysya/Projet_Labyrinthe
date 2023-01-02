@@ -9,6 +9,7 @@ players::stairPlayer::stairPlayer(const grid& grid) : player(grid)
 
 void players::stairPlayer::solve()
 {
+	printPosition();
 	int playerBlockedCounter = 0;
 	while (!(this->x == maze.getSizeX() - 2 && this->y == maze.getSizeY() - 2)) {
 		if (*this + getNextDirection()) {
