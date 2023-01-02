@@ -1,14 +1,17 @@
 #include "solver.h"
 #include "leftIfNotForwardPlayer.h"
+#include "rightIfNotForwardPlayer.h"
 
 coo::solver::solver(const coo::grid& g) : g(g)
 {
 	playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
+	playerlist.push_back(new coo::rightIfNotForwardPlayer(this->g));
 }
 
 coo::solver::solver(const coo::solver& s) : g(s.g)
 {
 	playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
+	playerlist.push_back(new coo::rightIfNotForwardPlayer(this->g));
 }
 
 coo::solver::~solver()
@@ -28,24 +31,13 @@ coo::solver& coo::solver::operator=(const solver& s)
 		}
 		this->playerlist.clear();
 		playerlist.push_back(new coo::leftIfNotForwardPlayer(this->g));
+		playerlist.push_back(new coo::rightIfNotForwardPlayer(this->g));
 	}
 	return *this;
 }
 
 void coo::solver::solve()
 {
-//	//Ajout des joueurs
-//	coo::leftPlayer p1(g);
-//	//coo::rightPlayer p2(g);
-//	//coo::yoloPlayer p3(g);
-//	//coo::stairsPlayer p4(g);
-//	//coo::customPlayer p5(g);
-//	this->playerlist.push_back(&p1);
-//	//this->playerlist.push_back(&p2);
-//	//this->playerlist.push_back(&p3);
-//	//this->playerlist.push_back(coo::stairsPlayer(g));
-//	//this->playerlist.push_back(coo::customPlayer(g));
-
 	int min = INT_MAX;
 	int currentMin = 0;
 	//todo: compare execution time with chrono? optionnel

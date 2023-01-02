@@ -5,6 +5,10 @@ coo::player::player(const grid& g, const int& x, const int& y) : x(1), y(1), maz
 {
 }
 
+coo::player::~player()
+{
+}
+
 bool coo::player::operator+(const direction& d) const
 {
 	bool isAccW = false;
@@ -66,7 +70,7 @@ void coo::player::printHistory() const
 					std::cout << "X";
 				}
 				else {
-					if (this->moveHistory.isSeen(j,i)) {
+					if (this->moveHistory.isSeen(j,i) != NONE) {
 						std::cout << "-";
 					}
 					else {

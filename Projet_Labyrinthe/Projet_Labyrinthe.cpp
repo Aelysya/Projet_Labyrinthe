@@ -13,7 +13,7 @@ int main()
 	//1: Choix du fichier
 	//saisie par l'utilisateur du nom du fichier au format .txt
 	//traitement du std::string -> supprimer tout avant /, supprimer tout après . et remplacer par .txt
-	bool fileNameOk = true;
+	bool fileNameOk = false;
 	bool gridCorrect = false;
 	std::string fileName;
 	do {
@@ -22,17 +22,17 @@ int main()
 		// + qu'il fait au moins 3x3 de large 
 		// (position du joueur de départ = fin)
 		//sinon -> step1
-		//std::cout << "Entrez le nom du fichier contenant le labyrinthe: " << std::endl;
-		//std::getline(std::cin, fileName);
-		//std::ifstream testOpen(fileName);
-		//fileNameOk = testOpen.is_open();
+		std::cout << "Entrez le nom du fichier contenant le labyrinthe: " << std::endl;
+		std::getline(std::cin, fileName);
+		std::ifstream testOpen(fileName);
+		fileNameOk = testOpen.is_open();
 
 		if (!fileNameOk) {
 			std::cout << "Fichier invalide !" << std::endl;
 		}
 		
 		else {
-			grid g("lab3_3x3.txt", 2);
+			grid g(fileName, 2);
 			gridCorrect = (g.getX() > 2 && g.getY() > 2) && (g.getX()%2 && g.getY()%2);
 
 			if (gridCorrect) {

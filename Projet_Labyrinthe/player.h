@@ -58,6 +58,8 @@ namespace coo {
 		 */
 		player(const grid& g, const int& x, const int& y);
 
+		virtual ~player();
+
 		/**
 		 * Affiche l'historique des mouvements effectués.
 		 */

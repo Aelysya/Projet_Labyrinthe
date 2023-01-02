@@ -3,13 +3,13 @@
 
 coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 {
-	this->seenTiles = new bool*[y];
-	this->blockedTiles = new bool* [y];
+	this->seenTiles = new direction*[y];
+	this->blockedTiles = new bool*[y];
 	for (size_t i = 0; i < y; ++i) {
-		this->seenTiles[i] = new bool[x];
+		this->seenTiles[i] = new direction[x];
 		this->blockedTiles[i] = new bool[x];
 		for (size_t j = 0; j < x; j++) {
-			this->seenTiles[i][j] = false;
+			this->seenTiles[i][j] = NONE;
 			this->blockedTiles[i][j] = true;
 		}
 	}
@@ -17,10 +17,10 @@ coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 
 coo::tracer::tracer(const coo::tracer& t) : moves(t.moves), sizex(t.sizex), sizey(t.sizey)
 {
-	this->seenTiles = new bool*[this->sizey];
+	this->seenTiles = new direction *[this->sizey];
 	this->blockedTiles = new bool*[this->sizey];
 	for (size_t i = 0; i < this->sizey; ++i) {
-		this->seenTiles[i] = new bool[this->sizex];
+		this->seenTiles[i] = new direction[this->sizex];
 		this->blockedTiles[i] = new bool[this->sizex];
 		for (size_t j = 0; j < this->sizex; j++) {
 			this->seenTiles[i][j] = t.seenTiles[i][j];
@@ -51,10 +51,10 @@ coo::tracer& coo::tracer::operator=(const coo::tracer& t)
 		delete[] this->seenTiles;
 		delete[] this->blockedTiles;
 
-		this->seenTiles = new bool*[this->sizey];
+		this->seenTiles = new direction *[this->sizey];
 		this->blockedTiles = new bool*[this->sizey];
 		for (size_t i = 0; i < this->sizey; ++i) {
-			this->seenTiles[i] = new bool[this->sizex];
+			this->seenTiles[i] = new direction[this->sizex];
 			this->blockedTiles[i] = new bool[this->sizex];
 			for (size_t j = 0; j < this->sizex; j++) {
 				this->seenTiles[i][j] = t.seenTiles[i][j];
@@ -72,19 +72,19 @@ int& coo::tracer::getMoves()
 
 void coo::tracer::addMove(const int& x, const int& y, const direction& d)
 {
-	this->seenTiles[y][x] = true;
+	this->seenTiles[y][x] = d;
 	switch (d) {
 	case UP:
-		this->seenTiles[y - 1][x] = true;
+		this->seenTiles[y - 1][x] = d;
 		break;
 	case DOWN:
-		this->seenTiles[y + 1][x] = true;
+		this->seenTiles[y + 1][x] = d;
 		break;
 	case RIGHT:
-		this->seenTiles[y][x + 1] = true;
+		this->seenTiles[y][x + 1] = d;
 		break;
 	case LEFT:
-		this->seenTiles[y][x - 1] = true;
+		this->seenTiles[y][x - 1] = d;
 		break;
 	}
 	this->moves++;
@@ -127,7 +127,7 @@ void coo::tracer::checkBlocked(const int& x, const int& y, const direction& d, c
 	std::cout << std::endl;*/
 }
 
-bool coo::tracer::isSeen(const int& x, const int& y) const
+coo::direction& coo::tracer::isSeen(const int& x, const int& y) const
 {
 	return seenTiles[y][x];
 }

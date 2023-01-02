@@ -20,7 +20,7 @@ namespace coo {
 		 * Listes des cases visités
 		 * (true pour case visité)
 		 */
-		bool** seenTiles;
+		direction** seenTiles;
 
 		/**
 		 * Listes des cases n'étant pas/plus visitables
@@ -79,7 +79,7 @@ namespace coo {
 		 *
 		 * \return true si la case n'a pas complètement été explorée
 		 */
-		bool isSeen(const int& x, const int& y) const;
+		direction& isSeen(const int& x, const int& y) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)

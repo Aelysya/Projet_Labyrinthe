@@ -131,6 +131,7 @@
     <ClCompile Include="leftIfNotForwardPlayer.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Projet_Labyrinthe.cpp" />
+    <ClCompile Include="rightIfNotForwardPlayer.cpp" />
     <ClCompile Include="solver.cpp" />
     <ClCompile Include="tracer.cpp" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="direction.h" />
     <ClInclude Include="leftIfNotForwardPlayer.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="rightIfNotForwardPlayer.h" />
     <ClInclude Include="solver.h" />
     <ClInclude Include="tracer.h" />
   </ItemGroup>
