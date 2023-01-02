@@ -130,5 +130,5 @@ void coo::grid::printMaze(const int& x, const int& y) const
 
 bool coo::grid::isAccessible(const int& x, const int& y) const
 {
-	return this->tiles[x][y];
+	return this->tiles[y][x];
 }

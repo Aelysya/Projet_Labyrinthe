@@ -75,10 +75,10 @@ void coo::tracer::addMove(const int& x, const int& y, const direction& d)
 	this->seenTiles[y][x] = true;
 	switch (d) {
 	case UP:
-		this->seenTiles[y + 1][x] = true;
+		this->seenTiles[y - 1][x] = true;
 		break;
 	case DOWN:
-		this->seenTiles[y - 1][x] = true;
+		this->seenTiles[y + 1][x] = true;
 		break;
 	case RIGHT:
 		this->seenTiles[y][x + 1] = true;

@@ -11,20 +11,20 @@ bool coo::player::operator+(const direction& d) const
 	bool isAccB = false;
 	switch (d) {
 	case UP:
-		isAccW = this->maze.isAccessible(this->y - 1, this->x);
-		isAccB = this->moveHistory.isAccessible(this->y - 1, this->x);
+		isAccW = this->maze.isAccessible(this->x, this->y - 1);
+		isAccB = this->moveHistory.isAccessible(this->x, this->y - 1);
 		break;
 	case LEFT:
-		isAccW = this->maze.isAccessible(this->y, this->x - 1);
-		isAccB = this->moveHistory.isAccessible(this->y, this->x - 1);
+		isAccW = this->maze.isAccessible(this->x - 1, this->y);
+		isAccB = this->moveHistory.isAccessible(this->x - 1, this->y);
 		break;
 	case DOWN:
-		isAccW = this->maze.isAccessible(this->y + 1, this->x);
-		isAccB = this->moveHistory.isAccessible(this->y + 1, this->x);
+		isAccW = this->maze.isAccessible(this->x, this->y + 1);
+		isAccB = this->moveHistory.isAccessible(this->x, this->y + 1);
 		break;
 	case RIGHT:
-		isAccW = this->maze.isAccessible(this->y, this->x + 1);
-		isAccB = this->moveHistory.isAccessible(this->y, this->x + 1);
+		isAccW = this->maze.isAccessible(this->x + 1, this->y);
+		isAccB = this->moveHistory.isAccessible(this->x + 1, this->y);
 		break;
 	}
 	bool canMove = isAccW && isAccB;
@@ -61,12 +61,12 @@ void coo::player::printHistory() const
 {
 	for (size_t i = 0; i < this->maze.getY(); ++i) {
 		for (size_t j = 0; j < this->maze.getX(); ++j) {
-			if (this->maze.isAccessible(i,j)) {
+			if (this->maze.isAccessible(j,i)) {
 				if (j == x && i == y) {
 					std::cout << "P";
 				}
 				else {
-					if (this->moveHistory.isSeen(j, i)) {
+					if (this->moveHistory.isSeen(j,i)) {
 						std::cout << "-";
 					}
 					else {

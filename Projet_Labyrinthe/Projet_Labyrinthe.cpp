@@ -15,9 +15,9 @@ int main()
 	//1: Choix du fichier
 	//saisie par l'utilisateur du nom du fichier au format .txt
 	//traitement du std::string -> supprimer tout avant /, supprimer tout après . et remplacer par .txt
-	bool fileNameOk;
+	bool fileNameOk = true;
 	bool gridCorrect = false;
-	std::string fileName = "lab3_3x3.txt";
+	std::string fileName;
 	do {
 		//2: Traitement du fichier
 		//todo: vérifier que fichier n'est pas vide 
@@ -26,15 +26,16 @@ int main()
 		//sinon -> step1
 		//std::cout << "Entrez le nom du fichier contenant le labyrinthe: " << std::endl;
 		//std::getline(std::cin, fileName);
-		std::ifstream testOpen(fileName);
-		fileNameOk = testOpen.is_open();
+		//std::ifstream testOpen(fileName);
+		//fileNameOk = testOpen.is_open();
 
 		if (!fileNameOk) {
 			std::cout << "Fichier invalide !" << std::endl;
 		}
+		
 		else {
 			grid g("lab3_3x3.txt", 2);
-			gridCorrect = g.getX() > 2 && g.getY() > 2;
+			gridCorrect = (g.getX() > 2 && g.getY() > 2) && (g.getX()%2 && g.getY()%2);
 
 			if (gridCorrect) {
 				g.printMaze(1, 1);
@@ -42,8 +43,11 @@ int main()
 				solver s(g);
 				s.solve();
 			}
+			else {
+				std::cout << "Grille invalide !" << std::endl;
+			}
 		}
-	} while (!fileNameOk && !gridCorrect);
+	} while (!fileNameOk || !gridCorrect);
 }
 
 
