@@ -128,12 +128,7 @@ void coo::grid::printMaze(const int& x, const int& y) const
 	std::cout << std::endl;
 }
 
-void coo::grid::printMaze(const tracer& t) const
-{
-	//todo (voir si besoin de friend pour accéder à seenTiles de tracer??)
-}
-
 bool coo::grid::isAccessible(const int& x, const int& y) const
 {
-	return this->tiles[y][x];
+	return this->tiles[x][y];
 }

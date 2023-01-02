@@ -56,7 +56,7 @@ namespace coo {
 		 *
 		 * \param g le labyrinthe à parcourir
 		 */
-		player(const grid& g);
+		player(const grid& g, const int& x, const int& y);
 
 		/**
 		 * Affiche l'historique des mouvements effectués.

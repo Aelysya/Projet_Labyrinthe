@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "tracer.h"
 
 namespace coo {
 	class grid
@@ -61,13 +60,6 @@ namespace coo {
 		 * \param posY Position verticale
 		 */
 		void printMaze(const int& x, const int& y) const;
-
-		/**
-		 * Affiche le labyrinthe avec le tracer de déplacement donné
-		 *
-		 * \param t Le tracer représentant les déplacements
-		 */
-		void printMaze(const tracer& t) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)

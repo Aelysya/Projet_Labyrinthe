@@ -1,37 +1,41 @@
 #include <iostream>
 #include "player.h"
 
-coo::player::player(const grid& g) : x(1), y(1), maze(g), moveHistory(maze.getX(), maze.getY()), currentDirection(RIGHT)
+coo::player::player(const grid& g, const int& x, const int& y) : x(1), y(1), maze(g), moveHistory(x, y), currentDirection(RIGHT)
 {
 }
 
 bool coo::player::operator+(const direction& d) const
 {
-	bool canMove = false;
+	bool isAccW = false;
+	bool isAccB = false;
 	switch (d) {
 	case UP:
-		canMove = this->maze.isAccessible(this->y - 1, this->x)
-			&& this->moveHistory.isAccessible(this->y - 1, this->x);
-		break;
-	case DOWN:
-		canMove = this->maze.isAccessible(this->y + 1, this->x)
-			&& this->moveHistory.isAccessible(this->y + 1, this->x);
-		break;
-	case RIGHT:
-		canMove = this->maze.isAccessible(this->y, this->x + 1)
-			&& this->moveHistory.isAccessible(this->y, this->x + 1);
+		isAccW = this->maze.isAccessible(this->y - 1, this->x);
+		isAccB = this->moveHistory.isAccessible(this->y - 1, this->x);
 		break;
 	case LEFT:
-		canMove = this->maze.isAccessible(this->y, this->x - 1)
-			&& this->moveHistory.isAccessible(this->y, this->x - 1);
+		isAccW = this->maze.isAccessible(this->y, this->x - 1);
+		isAccB = this->moveHistory.isAccessible(this->y, this->x - 1);
+		break;
+	case DOWN:
+		isAccW = this->maze.isAccessible(this->y + 1, this->x);
+		isAccB = this->moveHistory.isAccessible(this->y + 1, this->x);
+		break;
+	case RIGHT:
+		isAccW = this->maze.isAccessible(this->y, this->x + 1);
+		isAccB = this->moveHistory.isAccessible(this->y, this->x + 1);
 		break;
 	}
+	bool canMove = isAccW && isAccB;
 	return canMove;
 }
 
 bool coo::player::operator+=(const direction& d)
 {
 	if (this + d) {
+		this->moveHistory.checkBlocked(this->x, this->y, d, this->maze);
+		this->moveHistory.addMove(this->x, this->y, d);
 		switch (d) {
 		case UP :
 			this->y -= 2;
@@ -46,7 +50,6 @@ bool coo::player::operator+=(const direction& d)
 			this->x -= 2;
 			break;
 		}
-		this->moveHistory.addMove(this->x, this->y, d);
 		return true;
 	}
 	else {
@@ -56,7 +59,29 @@ bool coo::player::operator+=(const direction& d)
 
 void coo::player::printHistory() const
 {
-	//todo: this->maze.printMaze(this->moveHistory);
+	for (size_t i = 0; i < this->maze.getY(); ++i) {
+		for (size_t j = 0; j < this->maze.getX(); ++j) {
+			if (this->maze.isAccessible(i,j)) {
+				if (j == x && i == y) {
+					std::cout << "P";
+				}
+				else {
+					if (this->moveHistory.isSeen(j, i)) {
+						std::cout << "-";
+					}
+					else {
+						std::cout << " ";
+					}
+					
+				}
+			}
+			else {
+				std::cout << "#";
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
 }
 
 void coo::player::printPosition() const

@@ -2,6 +2,7 @@
 #include "direction.h"
 #include <vector>
 #include <string>
+#include "grid.h"
 
 namespace coo {
 	class tracer
@@ -59,6 +60,8 @@ namespace coo {
 		 */
 		tracer& operator=(const tracer& t);
 
+		int& getMoves();
+
 		/**
 		 * Ajoute le dernier mouvement effectué
 		 * dans l'historique.
@@ -68,6 +71,15 @@ namespace coo {
 		 * \param d La direction choisie
 		 */
 		void addMove(const int& x, const int& y, const direction& d);
+
+		void checkBlocked(const int& x, const int& y, const direction& d, const grid& g);
+
+		/**
+		 * Retourne l'état de la case (déplacement possible ou non)
+		 *
+		 * \return true si la case n'a pas complètement été explorée
+		 */
+		bool isSeen(const int& x, const int& y) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)

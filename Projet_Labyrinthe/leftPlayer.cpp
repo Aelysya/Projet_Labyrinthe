@@ -7,36 +7,33 @@ void coo::leftPlayer::changeDirection()
 	case UP:
 		this->currentDirection = LEFT;
 		break;
+	case LEFT:
+		this->currentDirection = DOWN;
+		break;
 	case DOWN:
 		this->currentDirection = RIGHT;
 		break;
 	case RIGHT:
 		this->currentDirection = UP;
 		break;
-	case LEFT:
-		this->currentDirection = DOWN;
-		break;
 	}
 }
 
-coo::leftPlayer::leftPlayer(const grid& g) : player(g)
+coo::leftPlayer::leftPlayer(const grid& g) : player(g, g.getX(), g.getY())
 {
 }
 
 int coo::leftPlayer::solve()
 {
-    std::cout << "leftPlayer solve" << std::endl;
-	while (x != maze.getX() - 1 && y != maze.getY() - 1) {
+	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		if (*this + currentDirection) {
-			std::cout << "leftPlayer solving :) " << this->currentDirection << std::endl;
 			*this += currentDirection;
-			this->printPosition();
+			this->printHistory();
 		}
 		else {
-			std::cout << "tournicotis, tournicotons" << std::endl;
 			this->changeDirection();
 		}
 	}
-	//this->printHistory();
-    return -1;
+	this->printHistory();
+    return this->moveHistory.getMoves();
 }

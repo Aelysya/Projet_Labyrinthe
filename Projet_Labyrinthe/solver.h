@@ -11,15 +11,6 @@ namespace coo {
 		 * Les joueurs du labyrinthe
 		 */
 		std::vector<player*> playerlist;
-		
-		/**
-		 * Résout la grille pour l'heuristique
-		 *
-		 * \param p La position du player dans la liste
-		 * \return Le nombre de cases parcourues nécessaire
-		 * à la résolution ou -1 si c'est impossible
-		 */
-		int solve(const int& p);
 
 	public:
 		/**
@@ -29,7 +20,12 @@ namespace coo {
 		 * dequel sera lu la structure du labyrinthe
 		 * \param size la largeur des cases
 		 */
-		solver(const std::string& filename, const int& size);
+		solver(const grid& g);
+
+		solver(const solver& s);
+
+		~solver();
+		solver& operator= (const solver& s);
 
 		/**
 		 * Résout la grille avec différentes heuristiques,
