@@ -58,14 +58,14 @@ namespace players {
 		 * Renvoie la prochaine direction qui devra être prise par le joueur
 		 */
 		virtual utility::direction getNextDirection() = 0;
-	public:
 		/**
 		 * Constructeur de player.
-		 * 
-		 * \param fileName Le nom du fichier dans lequel sera 
+		 *
+		 * \param fileName Le nom du fichier dans lequel sera
 		 * lu le labyrinthe où le joueur sera placé
 		 */
 		player(const utility::grid& grid);
+	public:
 		virtual ~player();
 		/**
 		 * Affiche l'historique des mouvements effectués.
