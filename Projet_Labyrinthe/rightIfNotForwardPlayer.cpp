@@ -1,7 +1,9 @@
 #include <iostream>
 #include "rightIfNotForwardPlayer.h"
 
-void coo::rightIfNotForwardPlayer::changeDirection()
+using namespace utility;
+
+void players::rightIfNotForwardPlayer::changeDirection()
 {
 	switch (currentDirection) {
 	case UP:
@@ -20,11 +22,11 @@ void coo::rightIfNotForwardPlayer::changeDirection()
 	}
 }
 
-coo::rightIfNotForwardPlayer::rightIfNotForwardPlayer(const grid& g) : player(g, g.getX(), g.getY())
+players::rightIfNotForwardPlayer::rightIfNotForwardPlayer(const grid& g) : player(g, g.getX(), g.getY(), "rightIfNotForwardPlayer")
 {
 }
 
-int coo::rightIfNotForwardPlayer::solve()
+int players::rightIfNotForwardPlayer::solve()
 {
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		if (*this + currentDirection && this->moveHistory.isSeen(this->x, this->y) != this->currentDirection) {
@@ -37,5 +39,4 @@ int coo::rightIfNotForwardPlayer::solve()
 	}
 	this->printHistory();
 	return this->moveHistory.getMoves();
-
 }

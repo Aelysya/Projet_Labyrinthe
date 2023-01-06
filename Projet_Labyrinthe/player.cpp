@@ -1,15 +1,17 @@
 #include <iostream>
 #include "player.h"
 
-coo::player::player(const grid& g, const int& x, const int& y) : x(1), y(1), maze(g), moveHistory(x, y), currentDirection(RIGHT)
+using namespace utility;
+
+players::player::player(const grid& g, const int& x, const int& y, const std::string& name) : x(1), y(1), maze(g), moveHistory(x, y), currentDirection(RIGHT), name(name)
 {
 }
 
-coo::player::~player()
+players::player::~player()
 {
 }
 
-bool coo::player::operator+(const direction& d) const
+bool players::player::operator+(const direction& d) const
 {
 	bool isAccW = false;
 	bool isAccB = false;
@@ -35,7 +37,7 @@ bool coo::player::operator+(const direction& d) const
 	return canMove;
 }
 
-bool coo::player::operator+=(const direction& d)
+bool players::player::operator+=(const direction& d)
 {
 	if (this + d) {
 		this->moveHistory.checkBlocked(this->x, this->y, d, this->maze);
@@ -61,7 +63,7 @@ bool coo::player::operator+=(const direction& d)
 	}
 }
 
-void coo::player::printHistory() const
+void players::player::printHistory() const
 {
 	for (size_t i = 0; i < this->maze.getY(); ++i) {
 		for (size_t j = 0; j < this->maze.getX(); ++j) {
@@ -88,7 +90,12 @@ void coo::player::printHistory() const
 	std::cout << std::endl;
 }
 
-void coo::player::printPosition() const
+void players::player::printPosition() const
 {
 	this->maze.printMaze(this->x, this->y);
+}
+
+std::string players::player::getName()
+{
+	return this->name;
 }

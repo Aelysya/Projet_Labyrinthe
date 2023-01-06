@@ -1,6 +1,6 @@
 #pragma once
 #include "player.h"
-namespace coo {
+namespace utility {
 	class solver
 	{
 		/**
@@ -10,7 +10,7 @@ namespace coo {
 		/**
 		 * Les joueurs du labyrinthe
 		 */
-		std::vector<player*> playerlist;
+		std::vector<players::player*> playerlist;
 
 	public:
 		/**

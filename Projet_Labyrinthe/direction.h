@@ -1,6 +1,6 @@
 #pragma once
 
-namespace coo {
+namespace utility {
 	/**
 	 * Cette énumération défini les 4 directions de déplacement possibles.
 	 */

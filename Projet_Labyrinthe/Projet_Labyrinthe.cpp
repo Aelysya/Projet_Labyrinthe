@@ -6,7 +6,7 @@
 #include "solver.h"
 #include "grid.h"
 
-using namespace coo;
+using namespace utility;
 
 int main()
 {

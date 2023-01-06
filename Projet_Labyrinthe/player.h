@@ -4,9 +4,14 @@
 #include "grid.h"
 #include <string>
 
-namespace coo {
+namespace players {
 	class player
 	{
+		/**
+		* Le nom du joueur
+		*/
+		std::string name;
+
 	protected:
 		/**
 		 * La position horizontale du joueur.
@@ -21,17 +26,17 @@ namespace coo {
 		/**
 		 * L'historique des mouvements du joueur.
 		 */
-		tracer moveHistory;
+		utility::tracer moveHistory;
 
 		/*
 		* La direction actuelle du joueur.
 		*/
-		direction currentDirection;
+		utility::direction currentDirection;
 
 		/**
 		 * Le labyrinthe à résoudre.
 		 */
-		grid maze;
+		utility::grid maze;
 
 		/**
 		 * Vérifie que le déplacement voulant être effectué est possible.
@@ -39,7 +44,7 @@ namespace coo {
 		 * \param d La direction voulant être prise par le joueur
 		 * \return Si le joueur peut se déplacer dans la direction voulue
 		 */
-		bool operator+(const direction& d) const;
+		bool operator+(const utility::direction& d) const;
 
 		/**
 		 * Déplace le joueur dans la direction donnée
@@ -48,15 +53,18 @@ namespace coo {
 		 * \param d La direction prise par le joueur
 		 * \return Si le joueur a effectué le déplacement
 		 */
-		bool operator+=(const direction& d);
+		bool operator+=(const utility::direction& d);
 		
 	public:
 		/**
 		 * Constructeur de joueur
 		 *
 		 * \param g le labyrinthe à parcourir
+		 * \param x la largeur du labyrinthe
+		 * \param y la longueur du labyrinthe
+		 * \param nomP le nom du player
 		 */
-		player(const grid& g, const int& x, const int& y);
+		player(const utility::grid& g, const int& x, const int& y, const std::string& name);
 
 		virtual ~player();
 
@@ -77,5 +85,12 @@ namespace coo {
 		 * à la résolution ou -1 si c'est impossible
 		 */
 		virtual int solve() = 0;
+
+		/**
+		 * Retourne le nom du player
+		 *
+		 * \return Le nom du player actuel
+		 */
+		std::string getName();
 	};
 }

@@ -1,7 +1,7 @@
 #include "tracer.h"
 #include <iostream>
 
-coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
+utility::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 {
 	this->seenTiles = new direction*[y];
 	this->blockedTiles = new bool*[y];
@@ -15,7 +15,7 @@ coo::tracer::tracer(const int& x, const int& y) : moves(0), sizex(x), sizey(y)
 	}
 }
 
-coo::tracer::tracer(const coo::tracer& t) : moves(t.moves), sizex(t.sizex), sizey(t.sizey)
+utility::tracer::tracer(const utility::tracer& t) : moves(t.moves), sizex(t.sizex), sizey(t.sizey)
 {
 	this->seenTiles = new direction *[this->sizey];
 	this->blockedTiles = new bool*[this->sizey];
@@ -29,7 +29,7 @@ coo::tracer::tracer(const coo::tracer& t) : moves(t.moves), sizex(t.sizex), size
 	}
 }
 
-coo::tracer::~tracer()
+utility::tracer::~tracer()
 {
 	for (size_t i = 0; i < this->sizey; ++i) {
 		delete[] this->seenTiles[i];
@@ -39,7 +39,7 @@ coo::tracer::~tracer()
 	delete[] this->blockedTiles;
 }
 
-coo::tracer& coo::tracer::operator=(const coo::tracer& t)
+utility::tracer& utility::tracer::operator=(const utility::tracer& t)
 {
 	if (this != &t) {
 		this->sizex = t.sizex;
@@ -65,12 +65,12 @@ coo::tracer& coo::tracer::operator=(const coo::tracer& t)
 	return *this;
 }
 
-int& coo::tracer::getMoves()
+int& utility::tracer::getMoves()
 {
 	return this->moves;
 }
 
-void coo::tracer::addMove(const int& x, const int& y, const direction& d)
+void utility::tracer::addMove(const int& x, const int& y, const direction& d)
 {
 	this->seenTiles[y][x] = d;
 	switch (d) {
@@ -90,7 +90,7 @@ void coo::tracer::addMove(const int& x, const int& y, const direction& d)
 	this->moves++;
 }
 
-void coo::tracer::checkBlocked(const int& x, const int& y, const direction& d, const coo::grid& g)
+void utility::tracer::checkBlocked(const int& x, const int& y, const direction& d, const utility::grid& g)
 {
 	bool blckup = this->isAccessible(x, y - 1) && g.isAccessible(x, y - 1);
 	bool blckdown = this->isAccessible(x, y + 1) && g.isAccessible(x, y + 1);
@@ -127,12 +127,12 @@ void coo::tracer::checkBlocked(const int& x, const int& y, const direction& d, c
 	std::cout << std::endl;*/
 }
 
-coo::direction& coo::tracer::isSeen(const int& x, const int& y) const
+utility::direction& utility::tracer::isSeen(const int& x, const int& y) const
 {
 	return seenTiles[y][x];
 }
 
-bool coo::tracer::isAccessible(const int& x, const int& y) const
+bool utility::tracer::isAccessible(const int& x, const int& y) const
 {
 	return blockedTiles[y][x];
 }

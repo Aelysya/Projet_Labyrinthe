@@ -1,6 +1,6 @@
 #pragma once
 #include "player.h"
-namespace coo {
+namespace players {
 	class rightIfNotForwardPlayer : public player
 	{
 		/**
@@ -8,7 +8,7 @@ namespace coo {
 		 */
 		void changeDirection();
 	public:
-		rightIfNotForwardPlayer(const grid& g);
+		rightIfNotForwardPlayer(const utility::grid& g);
 		int solve();
 	};
 }

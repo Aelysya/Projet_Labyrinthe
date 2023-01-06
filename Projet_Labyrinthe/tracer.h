@@ -4,7 +4,7 @@
 #include <string>
 #include "grid.h"
 
-namespace coo {
+namespace utility {
 	class tracer
 	{
 		/**

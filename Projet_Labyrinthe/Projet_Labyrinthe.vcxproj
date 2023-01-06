@@ -127,22 +127,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Chrono.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="leftIfNotForwardPlayer.cpp" />
+    <ClCompile Include="leftPlayer.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Projet_Labyrinthe.cpp" />
     <ClCompile Include="rightIfNotForwardPlayer.cpp" />
+    <ClCompile Include="rightPlayer.cpp" />
     <ClCompile Include="solver.cpp" />
+    <ClCompile Include="stairPlayer.cpp" />
     <ClCompile Include="tracer.cpp" />
+    <ClCompile Include="yoloPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chrono.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="direction.h" />
     <ClInclude Include="leftIfNotForwardPlayer.h" />
+    <ClInclude Include="leftPlayer.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="LogLevel.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="rightIfNotForwardPlayer.h" />
+    <ClInclude Include="rightPlayer.h" />
     <ClInclude Include="solver.h" />
+    <ClInclude Include="stairPlayer.h" />
     <ClInclude Include="tracer.h" />
+    <ClInclude Include="yoloPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lab1_10x10.txt" />

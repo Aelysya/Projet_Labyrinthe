@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 
-coo::grid::grid(const std::string& fileName, const int& size)
+utility::grid::grid(const std::string& fileName, const int& size)
 {
 	//Lecture de la première ligne pour déterminer la taille du labyrinthe
 	std::ifstream file(fileName);
@@ -56,7 +56,7 @@ coo::grid::grid(const std::string& fileName, const int& size)
 	file.close();
 }
 
-coo::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
+utility::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
 {
 	this->tiles = new bool*[this->sizey];
 	for (size_t i = 0; i < this->sizey; ++i)
@@ -69,7 +69,7 @@ coo::grid::grid(const grid& g) : sizex(g.sizex), sizey(g.sizey)
 	}
 }
 
-coo::grid::~grid()
+utility::grid::~grid()
 {
 	for (size_t i = 0; i < this->sizey; ++i) {
 		delete[] this->tiles[i];
@@ -77,7 +77,7 @@ coo::grid::~grid()
 	delete[] this->tiles;
 }
 
-coo::grid& coo::grid::operator=(const grid& g)
+utility::grid& utility::grid::operator=(const grid& g)
 {
 	if (this != &g) {
 		for (size_t i = 0; i < this->sizey; ++i) {
@@ -98,16 +98,16 @@ coo::grid& coo::grid::operator=(const grid& g)
 	return *this;
 }
 
-int coo::grid::getX() const
+int utility::grid::getX() const
 {
 	return this->sizex;
 }
-int coo::grid::getY() const
+int utility::grid::getY() const
 {
 	return this->sizey;
 }
 
-void coo::grid::printMaze(const int& x, const int& y) const
+void utility::grid::printMaze(const int& x, const int& y) const
 {
 	for (size_t i = 0; i < this->sizey; ++i) {
 		for (size_t j = 0; j < this->sizex; ++j) {
@@ -128,7 +128,7 @@ void coo::grid::printMaze(const int& x, const int& y) const
 	std::cout << std::endl;
 }
 
-bool coo::grid::isAccessible(const int& x, const int& y) const
+bool utility::grid::isAccessible(const int& x, const int& y) const
 {
 	return this->tiles[y][x];
 }
