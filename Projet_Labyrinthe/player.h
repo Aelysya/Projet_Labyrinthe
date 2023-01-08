@@ -42,7 +42,7 @@ namespace players {
 		 * Vérifie que le déplacement voulant être effectué est possible.
 		 *
 		 * \param d La direction voulant être prise par le joueur
-		 * \return Si le joueur peut se déplacer dans la direction voulue
+		 * \return true si le joueur peut se déplacer dans la direction voulue
 		 */
 		bool operator+(const utility::direction& d) const;
 
@@ -51,7 +51,7 @@ namespace players {
 		 * et ajoute le mouvement à l'historique.
 		 *
 		 * \param d La direction prise par le joueur
-		 * \return Si le joueur a effectué le déplacement
+		 * \return true si le joueur a effectué le déplacement
 		 */
 		bool operator+=(const utility::direction& d);
 		
@@ -62,10 +62,14 @@ namespace players {
 		 * \param g le labyrinthe à parcourir
 		 * \param x la largeur du labyrinthe
 		 * \param y la longueur du labyrinthe
-		 * \param nomP le nom du player
+		 * \param name le nom du player
 		 */
 		player(const utility::grid& g, const int& x, const int& y, const std::string& name);
 
+
+		/**
+		 * Destructeur
+		 */
 		virtual ~player();
 
 		/**

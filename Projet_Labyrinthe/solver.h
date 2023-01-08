@@ -7,6 +7,7 @@ namespace utility {
 		 * Le labyrinthe à résoudre
 		 */
 		grid g;
+
 		/**
 		 * Les joueurs du labyrinthe
 		 */
@@ -14,17 +15,29 @@ namespace utility {
 
 	public:
 		/**
-		 * Résolveur de labyrinthe de case de largeur variable
+		 * Constructeur du solver de labyrinthe
 		 *
-		 * \param fileName nom du fichier texte à partir 
-		 * dequel sera lu la structure du labyrinthe
-		 * \param size la largeur des cases
+		 * \param g le labyrinthe à résoudre
 		 */
 		solver(const grid& g);
 
+		/**
+		 * Constructeur de recopie du labyrinthe
+		 *
+		 * \param s le solver à copier
+		 */
 		solver(const solver& s);
 
+		/**
+		 * Destructeur
+		 */
 		~solver();
+
+		/**
+		 * Opérateur d'affectation
+		 *
+		 * \param s Le solver à affecter
+		 */
 		solver& operator= (const solver& s);
 
 		/**

@@ -6,16 +6,17 @@ namespace players {
 	private:
 		/**
 		 * Renvoie la prochaine direction qui devra être prise par le joueur
+		 *
+		 * \return La prochaine direction
 		 */
 		utility::direction getNextDirection();
 	public:
 		/**
-		 * Constructeur de yoloPlayer.
+		 * Constructeur du player
 		 *
-		 * \param fileName Le nom du fichier dans lequel sera
-		 * lu le labyrinthe où le joueur sera placé
+		 * \param g la grille à résoudre
 		 */
-		yoloPlayer(const utility::grid& grid);
+		yoloPlayer(const utility::grid& g);
 
 		/**
 		 * Résolution du labyrinthe

@@ -8,17 +8,18 @@ namespace utility {
 	class tracer
 	{
 		/**
-		 * Nombre de lignes du labyrinthe.
+		 * Nombre de colonnes du labyrinthe.
 		 */
 		int sizex;
+
 		/**
-		 * Nombre de colonnes du labyrinthe.
+		 * Nombre de lignes du labyrinthe.
 		 */
 		int sizey;
 
 		/**
-		 * Listes des cases visités
-		 * (true pour case visité)
+		 * Listes des dernières directions prises pour chaque case
+		 * (NONE pour une case pas visitée)
 		 */
 		direction** seenTiles;
 
@@ -36,8 +37,8 @@ namespace utility {
 		/**
 		 * Constructeur d'historique de déplacement
 		 *
-		 * \param x la longueur du labyrinthe
-		 * \param y la largeur du labyrinthe
+		 * \param x la largeur du labyrinthe
+		 * \param y la hauteur du labyrinthe
 		 */
 		tracer(const int& x, const int& y);
 
@@ -60,30 +61,52 @@ namespace utility {
 		 */
 		tracer& operator=(const tracer& t);
 
-		int& getMoves();
+		/**
+		 * Retourne le nombre de mouvements effectués
+		 * 
+		 * \return le nombre de mouvements effectués
+		 */
+		int getMoves();
 
 		/**
 		 * Ajoute le dernier mouvement effectué
 		 * dans l'historique.
 		 *
 		 * \param x La position horizontale actuelle
-		 * \param y La position verticalled actuelle
+		 * \param y La position verticalle actuelle
 		 * \param d La direction choisie
 		 */
 		void addMove(const int& x, const int& y, const direction& d);
 
+		/**
+		 * Vérifie si la position actuelle doit être bloquée
+		 * et la bloque si les cases autour de la case actuelle,
+		 * excluant celle dans la direction indiquée 
+		 * (où un déplacement est possible)
+		 * sont soit des murs ou d'autres cases bloquées.
+		 *
+		 * \param x La position horizontale actuelle
+		 * \param y La position verticalle actuelle
+		 * \param d La direction choisie
+		 * \param g le labyrinthe
+		 */
 		void checkBlocked(const int& x, const int& y, const direction& d, const grid& g);
 
 		/**
-		 * Retourne l'état de la case (déplacement possible ou non)
+		 * Retourne l'état de la case (case déjà vue ou non)
 		 *
-		 * \return true si la case n'a pas complètement été explorée
+		 * \param x La position horizontale actuelle
+		 * \param y La position verticalle actuelle
+		 * \return la direction dans laquelle la case a déjà été vue 
+		 * (NONE si jamais vue)
 		 */
 		direction& isSeen(const int& x, const int& y) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)
 		 *
+		 * \param x La position horizontale actuelle
+		 * \param y La position verticalle actuelle
 		 * \return true si la case n'a pas complètement été explorée
 		 */
 		bool isAccessible(const int& x, const int& y) const;

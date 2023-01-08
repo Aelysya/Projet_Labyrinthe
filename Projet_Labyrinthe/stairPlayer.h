@@ -7,19 +7,23 @@ namespace players {
 	private:
 		/**
 		 * Renvoie la prochaine direction qui devra être prise par le joueur
+		 *
+		 * \return La prochaine direction
 		 */
 		utility::direction getNextDirection();
 	public:
 		/**
-		 * Constructeur de rightPlayer.
+		 * Constructeur du player
 		 *
-		 * \param fileName Le nom du fichier dans lequel sera
-		 * lu le labyrinthe où le joueur sera placé
+		 * \param g la grille à résoudre
 		 */
-		stairPlayer(const utility::grid& grid);
+		stairPlayer(const utility::grid& g);
 
 		/**
 		 * Résolution du labyrinthe
+		 *
+		 * \return Le nombre de cases parcourues nécessaire
+		 * à la résolution ou -1 si c'est impossible
 		 */
 		int solve();
 	};

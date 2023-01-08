@@ -5,11 +5,11 @@ namespace utility {
 	class grid
 	{
 		/**
-		 * Nombre de lignes du labyrinthe.
+		 * Nombre de colonnes du labyrinthe.
 		 */
 		int sizex;
 		/**
-		 * Nombre de colonnes du labyrinthe.
+		 * Nombre de lignes du labyrinthe.
 		 */
 		int sizey;
 
@@ -50,20 +50,34 @@ namespace utility {
 		 */
 		grid& operator=(const grid& g);
 
+
+		/**
+		* Retourne le nombre de colonnes 
+		* 
+		* \return le nombre de colonnes
+		*/
 		int getX() const;
+
+		/**
+		* Retourne le nombre de lignes
+		*
+		* \return le nombre de lignes
+		*/
 		int getY() const;
 
 		/**
 		 * Affiche une position dans le labyrinthe
 		 * 
-		 * \param posX Position horizontale
-		 * \param posY Position verticale
+		 * \param x Position horizontale
+		 * \param y Position verticale
 		 */
 		void printMaze(const int& x, const int& y) const;
 
 		/**
 		 * Retourne l'état de la case (déplacement possible ou non)
 		 * 
+		 * \param x Position horizontale de la case
+		 * \param y Position verticale de la case
 		 * \return true si la case n'est pas un mur
 		 */
 		bool isAccessible(const int& x, const int& y) const;

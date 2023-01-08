@@ -65,7 +65,7 @@ utility::tracer& utility::tracer::operator=(const utility::tracer& t)
 	return *this;
 }
 
-int& utility::tracer::getMoves()
+int utility::tracer::getMoves()
 {
 	return this->moves;
 }
@@ -111,20 +111,6 @@ void utility::tracer::checkBlocked(const int& x, const int& y, const direction& 
 		this->blockedTiles[y][x - 1] = blckdown || blckup || blckright;
 		break;
 	}
-
-	/*std::cout << "blockedTiles" << std::endl;
-	for (size_t i = 0; i < this->sizey; ++i) {
-		for (size_t j = 0; j < this->sizex; ++j) {
-			if (this->blockedTiles[i][j]) {
-				std::cout << " ";
-			}
-			else {
-				std::cout << "#";
-			}
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;*/
 }
 
 utility::direction& utility::tracer::isSeen(const int& x, const int& y) const
