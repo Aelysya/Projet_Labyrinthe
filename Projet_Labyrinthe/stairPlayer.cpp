@@ -12,7 +12,7 @@ int players::stairPlayer::solve()
 	int playerBlockedCounter = 0;
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		if (*this + getNextDirection()) {
-			*this += getNextDirection();
+			*this += this->currentDirection;
 			//printPosition();
 			playerBlockedCounter = 0;
 		}
@@ -20,7 +20,6 @@ int players::stairPlayer::solve()
 		else {
 			playerBlockedCounter++;
 		}
-		this->currentDirection = getNextDirection();
 		//Si le joueur est bloqué depuis 5 tours, arrêt du jeu
 		if (playerBlockedCounter > 5) {
 			return -1;
@@ -32,17 +31,15 @@ int players::stairPlayer::solve()
 
 direction players::stairPlayer::getNextDirection()
 {
-	direction nextDirection;
 	switch (this->currentDirection) {
 	case UP:
 	case DOWN:
-		nextDirection = RIGHT;
+		this->currentDirection = RIGHT;
 		break;
 	case RIGHT:
 	case LEFT:
-		nextDirection = DOWN;
+		this->currentDirection = DOWN;
 		break;
 	}
-
-	return nextDirection;
+	return this->currentDirection;
 }

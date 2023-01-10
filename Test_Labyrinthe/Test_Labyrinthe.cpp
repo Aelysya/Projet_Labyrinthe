@@ -3,8 +3,16 @@
 #include "../Projet_Labyrinthe/grid.cpp"
 #include "../Projet_Labyrinthe/tracer.cpp"
 #include "../Projet_Labyrinthe/direction.h"
+#include "../Projet_Labyrinthe/player.cpp"
+#include "../Projet_Labyrinthe/leftPlayer.cpp"
+#include "../Projet_Labyrinthe/rightPlayer.cpp"
+#include "../Projet_Labyrinthe/stairPlayer.cpp"
+#include "../Projet_Labyrinthe/yoloPlayer.cpp"
+#include "../Projet_Labyrinthe/leftIfNotForwardPlayer.cpp"
+#include "../Projet_Labyrinthe/rightIfNotForwardPlayer.cpp"
 
 using namespace utility;
+using namespace players;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace TestLabyrinthe
@@ -20,6 +28,75 @@ namespace TestLabyrinthe
 			grid g2("..\\..\\Test_Labyrinthe\\mazeTest2.txt", 2);
 			Assert::IsTrue(g2.getX() == 7);
 			Assert::IsTrue(g2.getY() == 7);
+		}
+
+		TEST_METHOD(isAccessible)
+		{
+			grid g("..\\..\\Test_Labyrinthe\\mazeTest1.txt", 2);
+			//Walls
+			Assert::IsFalse(g.isAccessible(0, 0));
+			Assert::IsFalse(g.isAccessible(0, 1));
+			Assert::IsFalse(g.isAccessible(1, 0));
+			Assert::IsFalse(g.isAccessible(1, 2));
+			Assert::IsFalse(g.isAccessible(4, 4));
+			//Free tiles
+			Assert::IsTrue(g.isAccessible(1, 1));
+			Assert::IsTrue(g.isAccessible(2, 1));
+			Assert::IsTrue(g.isAccessible(3, 3));
+		}
+	};
+
+	TEST_CLASS(TestPlayer)
+	{
+	public:
+		TEST_METHOD(solve)
+		{
+			//Un labyrinthe où toutes les solutions se font en 2 pas
+			grid g1("..\\..\\Test_Labyrinthe\\mazeTest1.txt", 2);
+			leftPlayer lp1(g1);
+			Assert::IsTrue(lp1.solve() == 2);
+			rightPlayer rp1(g1);
+			Assert::IsTrue(rp1.solve() == 2);
+			stairPlayer sp1(g1);
+			Assert::IsTrue(sp1.solve() == 2);
+			yoloPlayer yp1(g1);
+			Assert::IsTrue(yp1.solve() == 2);
+			leftIfNotForwardPlayer lfp1(g1);
+			Assert::IsTrue(lfp1.solve() == 2);
+			rightIfNotForwardPlayer rfp1(g1);
+			Assert::IsTrue(rfp1.solve() == 2);
+			
+			//Un labyrinthe dans lequel stairPlayer ne peut trouver la sortie
+			grid g2("..\\..\\Test_Labyrinthe\\mazeTest2.txt", 2);
+			leftPlayer lp2(g2);
+			Assert::IsTrue(lp2.solve() == 8);
+			rightPlayer rp2(g2);
+			Assert::IsTrue(rp2.solve() == 6);
+			stairPlayer sp2(g2);
+			Assert::IsTrue(sp2.solve() == -1);
+			yoloPlayer yp2(g2);
+			Assert::IsTrue(yp2.solve() != -1);
+			leftIfNotForwardPlayer lfp2(g2);
+			Assert::IsTrue(lfp2.solve() == 12);
+			rightIfNotForwardPlayer rfp2(g2);
+			Assert::IsTrue(rfp2.solve() == 20);
+		}
+
+		TEST_METHOD(getName)
+		{
+			grid g("..\\..\\Test_Labyrinthe\\mazeTest1.txt", 2);
+			leftPlayer lp(g);
+			Assert::IsTrue(lp.getName() == "leftPlayer");
+			rightPlayer rp(g);
+			Assert::IsTrue(rp.getName() == "rightPlayer");
+			stairPlayer sp(g);
+			Assert::IsTrue(sp.getName() == "stairPlayer");
+			yoloPlayer yp(g);
+			Assert::IsTrue(yp.getName() == "yoloPlayer");
+			leftIfNotForwardPlayer lfp(g);
+			Assert::IsTrue(lfp.getName() == "leftIfNotForwardPlayer");
+			rightIfNotForwardPlayer rfp(g);
+			Assert::IsTrue(rfp.getName() == "rightIfNotForwardPlayer");
 		}
 	};
 
