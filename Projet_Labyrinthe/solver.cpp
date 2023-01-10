@@ -62,7 +62,6 @@ void utility::solver::solve()
 	std::string minMTime = "";
 	int minM = INT_MAX;
 	int currentMinM = 0;
-	//todo: compare execution time with chrono? optionnel
 	for (players::player* p : this->playerlist) {
 		c.launchChrono();
 		currentMinM = p->solve();
@@ -82,5 +81,4 @@ void utility::solver::solve()
 		}
 	}
 	logger.info("Le player traversant le labyrinthe avec le moins de deplacements est " + minMPlayer + " avec " + std::to_string(minM) + " pas en " + minMTime + "s.");
-	//todo: display result
 }

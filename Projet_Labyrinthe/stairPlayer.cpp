@@ -13,15 +13,14 @@ int players::stairPlayer::solve()
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		if (*this + getNextDirection()) {
 			*this += this->currentDirection;
-			//printPosition();
 			playerBlockedCounter = 0;
 		}
 		//Si le joueur n'a pas bougé, on augmente le compteur de tours bloqué
 		else {
 			playerBlockedCounter++;
 		}
-		//Si le joueur est bloqué depuis 5 tours, arrêt du jeu
-		if (playerBlockedCounter > 5) {
+		//Si le joueur est bloqué depuis 3 tours, arrêt de la résolution
+		if (playerBlockedCounter > 3) {
 			return -1;
 		}
 	}

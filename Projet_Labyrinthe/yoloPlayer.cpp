@@ -13,7 +13,6 @@ int players::yoloPlayer::solve()
 {
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		*this += this->getNextDirection();
-		//this->printHistory();
 	}
 	this->printHistory();
 	return this->moveHistory.getMoves();

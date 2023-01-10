@@ -11,7 +11,6 @@ int players::rightPlayer::solve()
 {
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		*this += getNextDirection();
-		//printPosition();
 	}
 	this->printHistory();
 	return this->moveHistory.getMoves();

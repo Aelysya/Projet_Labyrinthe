@@ -31,7 +31,6 @@ int players::rightIfNotForwardPlayer::solve()
 	while (!(this->x == maze.getX() - 2 && this->y == maze.getY() - 2)) {
 		if (*this + currentDirection && this->moveHistory.isSeen(this->x, this->y) != this->currentDirection) {
 			*this += currentDirection;
-			//this->printHistory();
 		}
 		else {
 			this->changeDirection();

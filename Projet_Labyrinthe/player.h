@@ -66,7 +66,6 @@ namespace players {
 		 */
 		player(const utility::grid& g, const int& x, const int& y, const std::string& name);
 
-
 		/**
 		 * Destructeur
 		 */

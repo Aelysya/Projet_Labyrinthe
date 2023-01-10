@@ -30,7 +30,7 @@ utility::grid::grid(const std::string& fileName, const int& size)
 	this->tiles = new bool*[this->sizey];
 	for (size_t i = 0; i < this->sizey; ++i) {
 		this->tiles[i] = new bool[this->sizex];
-		int k = -1; //Décalement des colonnes
+		int k = -1; //Décalage des colonnes
 		if (i != 0 || i != this->sizey) {
 			for (size_t j = 0; j < this->sizex; j++) {
 				if (j % size == 0) {
