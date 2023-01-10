@@ -81,6 +81,6 @@ void utility::solver::solve()
 			logger.info("Echec de la resolution de " + p->getName() + "\n");
 		}
 	}
-	logger.info("Le player traversant le labyrinthe avec le moins de deplacements est " + minMPlayer + " avec " + std::to_string(minM) + " pas en " + minMTime);
+	logger.info("Le player traversant le labyrinthe avec le moins de deplacements est " + minMPlayer + " avec " + std::to_string(minM) + " pas en " + minMTime + "s.");
 	//todo: display result
 }
